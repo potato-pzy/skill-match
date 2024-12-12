@@ -110,19 +110,37 @@
     <!-- Sign Up Form -->
     <div class="container">
         <h2>Sign Up</h2>
+        <!-- alert box  -->
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+            <strong>{{message}}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
         <form method="post">
             {% csrf_token %}
-            <input type="text" name="first_name" placeholder="Your Full Name" required>
-            <input type="email" name="email" placeholder="Enter your email" required>
+            <input type="text" name="first_name" placeholder="Your Full Name" value="{{first_name}}" required>
+            <input type="email" name="email" placeholder="Enter your email" value="{{email}}" required>
             <input type="password" name="password" placeholder="Create a password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm password" required>
             <button type="submit">Sign Up</button>
         </form>
+        <div style="display: flex;width: 400px;justify-content: space-evenly;">
+            <a href="{% url 'login' %}" style="text-decoration: none;"><h6>Already have an account? Login</h6></a>
+            <a href="{% url 'home' %}" style="text-decoration: none;"><h6>Home</h6></a>
+        </div>
     </div>
 
     <!-- Footer Section -->
     <footer>
         <p>&copy; 2024 Skill Match. All rights reserved.</p>
     </footer>
+    <script>
+        setTimeout(() => {
+            $(".alert").alert("close")
+        }, 3000)
+    </script>
 </body>
 
 </html>

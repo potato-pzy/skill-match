@@ -104,6 +104,7 @@
     <!-- Header Section -->
     <header>
         <div class="logo">Skill Match</div>
+        <div>
     </header>
     <!-- alert box  -->
     {% if messages %}
@@ -122,15 +123,16 @@
             <input type="password" name="password" placeholder="Enter your password" required>
             <button type="submit">Sign In</button>
         </form>
+        <div style="display: flex;width: 400px;justify-content: space-evenly;">
+            <a href="{% url 'signup' %}" style="text-decoration: none;"><h6>Not have an account? Sign-up</h6></a>
+            <a href="{% url 'home' %}" style="text-decoration: none;"><h6>Home</h6></a>
+        </div>
     </div>
 
     <!-- Footer Section -->
     <footer>
         <p>&copy; 2024 Skill Match. All rights reserved.</p>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
-    crossorigin="anonymous">
-    </script>
     <script>
         setTimeout(() => {
             $(".alert").alert("close")

@@ -12,7 +12,17 @@ def signUp(request):
         firstName = request.POST.get('first_name')
         email = request.POST.get('email')
         password = request.POST.get('password')
-        CustomUser.objects.create_user(first_name=firstName,email=email,password=password,username=email)
+        confirm_password = request.POST.get('confirm_password')
+        context = {
+            'first_name':firstName,
+            'email':email,
+        }
+        if password != confirm_password:
+            messages.error(request,"Password doesn't match")
+            return render(request,'authentication_app/sign_up.html',context)
+        else:
+            CustomUser.objects.create_user(first_name=firstName,email=email,password=password,username=email)
+            return redirect(signIn)
     return render(request,'authentication_app/sign_up.html')
 
 def signIn(request):
@@ -44,4 +54,13 @@ def signIn(request):
         return render(request, 'authentication_app/login.html')
    
 def home(request):
+    
     return render(request,'authentication_app/index.html')
+
+def logout_view(request):
+    logout(request)
+    return redirect(home)
+
+
+def about(request):
+    return render(request,'authentication_app/about.html')
