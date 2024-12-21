@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import CustomUser
+from .models import CustomUser,JobSeeker
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from django.contrib import messages
@@ -24,6 +24,68 @@ def signUp(request):
             CustomUser.objects.create_user(first_name=firstName,email=email,password=password,username=email)
             return redirect(signIn)
     return render(request,'authentication_app/sign_up.html')
+
+def signUpJobSeeker(request):
+    if request.method == 'POST':
+        firstName = request.POST.get('first_name')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+        is_job_seeker = request.POST.get('is_job_seeker')
+        
+        context = {
+            'first_name': firstName,
+            'email': email,
+        }
+        
+        if is_job_seeker:
+            phone = request.POST.get('phone')
+            availability = request.POST.get('availability')
+            area = request.POST.get('area')
+            profile = request.FILES.get('profile')
+            job_role = request.POST.get('job_role')
+            
+            context['phone'] = phone
+            context['availability'] = availability
+            context['area'] = area
+        
+        # Check if passwords match
+        if password != confirm_password:
+            messages.error(request, "Passwords do not match")
+            return render(request, 'authentication_app/sign_up_job_seeker.html', context)
+        
+        # Check if email already exists
+        if CustomUser.objects.filter(email=email).exists():
+            messages.error(request, "Email already exists")
+            return render(request, 'authentication_app/sign_up_job_seeker.html', context)
+        
+        # Create the user and job seeker
+        try:
+            user = CustomUser.objects.create_user(
+                first_name=firstName,
+                email=email,
+                password=password,
+                username=email,
+                is_job_seeker=is_job_seeker
+            )
+            
+            if is_job_seeker:
+                profile = request.FILES.get('profile')
+                JobSeeker.objects.create(
+                    user=user,
+                    phone=phone,
+                    availability=availability,
+                    area=area,
+                    profile=profile if profile else None,  # Handle missing profile
+                )
+
+            
+            return redirect(signIn)
+        except Exception as e:
+            messages.error(request, f"An error occurred: {str(e)}")
+            return render(request, 'authentication_app/sign_up_job_seeker.html', context)
+
+    return render(request, 'authentication_app/sign_up_job_seeker.html')
 
 def signIn(request):
     if request.method == 'POST':

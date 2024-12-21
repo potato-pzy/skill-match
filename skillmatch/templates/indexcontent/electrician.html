@@ -1,5 +1,4 @@
-{% extends 'base/base.html' %}
-{% block content %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -133,7 +132,8 @@
             }
 
         }
-    </style>
+        
+    </style> 
 </head>
 
 <body>
@@ -146,17 +146,24 @@
     <div class="container">
         <h2>Find Your Electrician</h2>
         <div class="electricians">
+            {% for i in electrician %}
             <div class="electrician-card">
                 <div class="image-container">
-                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\7dca2263a2004d92ae3158e1eda4938c.jpg" alt="John Doe" class="electrician-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fa-solid fa-bolt default-icon"></i>
+                    {% if i.profile %}
+                        <img src="{{ i.profile.url }}" alt="{{ i.user.first_name }}" class="electrician-photo">
+                    {% else %}
+                        <i class="fa-solid fa-bolt default-icon"></i> <!-- Default icon -->
+                    {% endif %}
                 </div>
-                <h3>Vignesh v</h3>
-                <p>Contact: (123) 456-7890</p>
-                <p>Area: New York</p>
-                <p>Availability: Mon-Fri, 9 AM - 5 PM</p>
-                <button onclick="scheduleAppointment('John Doe')">Schedule Appointment</button>
+                <h3>{{ i.user.first_name }}</h3>
+                <p>Contact: {{ i.phone }}</p>
+                <p>Area: {{ i.area }}</p>
+                <p>Availability: Mon-Fri, {{ i.availability }}</p>
+                <button onclick="scheduleAppointment('{{ i.user.first_name }}')">Schedule Appointment</button>
             </div>
+            {% endfor %}
+
+
 
             <div class="electrician-card">
                 <div class="image-container">
@@ -268,4 +275,3 @@ onclick="scheduleAppointment('Chris Lee')">Schedule Appointment</button>
     </script>
 </body>
 </html>
-{% endblock content %}
