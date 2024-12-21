@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dog Walkers - Skill Match</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif; /* Changed font style to Roboto */
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(to right, #512da8, #5c6bc0);
+            color: white;
+            padding: 10px 0; /* Decreased padding */
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            background-color: #fff;
+            padding: 15px; /* Decreased padding */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        h2 {
+            font-size: 1.5rem; /* Decreased font size */
+            margin-bottom: 10px; /* Decreased margin */
+            text-align: center;
+            color: #512da8;
+        }
+
+        .dog-walkers {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .dog-walker-card {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 10px; /* Decreased padding */
+            width: 280px; /* Decreased width */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .dog-walker-photo {
+            width: 100px; /* Set a specific width */
+            height: 100px; /* Set a specific height to match the width */
+            border-radius: 50%; /* Make the image circular */
+            object-fit: cover; /* Ensure the image covers the area without distortion */
+        }
+
+        button {
+            background: linear-gradient(to right, #512da8, #5c6bc0);
+            color: #fff;
+            padding: 8px 0; /* Decreased padding */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            margin-top: 8px; /* Decreased margin */
+            width: 100%;
+            font-size: 0.9rem; /* Decreased font size */
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background: linear-gradient(to right, #5c6bc0, #512da8);
+            color: white;
+            text-align: center;
+            padding: 8px; /* Decreased padding */
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            position: relative;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 10px; /* Decreased padding */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">Skill Match - Dog Walkers</div>
+    </header>
+
+    <!-- Dog Walkers Section -->
+    <div class ```html
+="container">
+        <h2>Find Your Dog Walker</h2>
+        <div class="dog-walkers">
+            <div class="dog-walker-card">
+                <img src="C:\Users\varun\Pictures\dogwalker1.jpg" alt="Alice Johnson" class="dog-walker-photo">
+                <h3>Alice Johnson</h3>
+                <p>Contact: (111) 222-3333</p>
+                <p>Area: Seattle</p>
+                <p>Availability: Mon-Fri, 9 AM - 5 PM</p>
+                <button onclick="scheduleAppointment('Alice Johnson')">Schedule Appointment</button>
+            </div>
+
+            <div class="dog-walker-card">
+                <img src="C:\Users\varun\Pictures\dogwalker2.jpg" alt="Bob Smith" class="dog-walker-photo">
+                <h3>Bob Smith</h3>
+                <p>Contact: (222) 333-4444</p>
+                <p>Area: Portland</p>
+                <p>Availability: Tue-Sat, 10 AM - 6 PM</p>
+                <button onclick="scheduleAppointment('Bob Smith')">Schedule Appointment</button>
+            </div>
+
+            <div class="dog-walker-card">
+                <img src="C:\Users\varun\Pictures\dogwalker3.jpg" alt="Charlie Brown" class="dog-walker-photo">
+                <h3>Charlie Brown</h3>
+                <p>Contact: (333) 444-5555</p>
+                <p>Area: San Francisco</p>
+                <p>Availability: Mon-Fri, 8 AM - 4 PM</p>
+                <button onclick="scheduleAppointment('Charlie Brown')">Schedule Appointment</button>
+            </div>
+
+            <div class="dog-walker-card">
+                <img src="C:\Users\varun\Pictures\dogwalker4.jpg" alt="Diana Prince" class="dog-walker-photo">
+                <h3>Diana Prince</h3>
+                <p>Contact: (444) 555-6666</p>
+                <p>Area: Los Angeles</p>
+                <p>Availability: Wed-Sun, 11 AM - 7 PM</p>
+                <button onclick="scheduleAppointment('Diana Prince')">Schedule Appointment</button>
+            </div>
+
+            <div class="dog-walker-card">
+                <img src="C:\Users\varun\Pictures\dogwalker5.jpg" alt="Ethan Hunt" class="dog-walker-photo">
+                <h3>Ethan Hunt</h3>
+                <p>Contact: (555) 666-7777</p>
+                <p>Area: Chicago</p>
+                <p>Availability: Mon-Fri, 10 AM - 5 PM</p>
+                <button onclick="scheduleAppointment('Ethan Hunt')">Schedule Appointment</button>
+            </div>
+
+            <div class="dog-walker-card">
+                <img src="C:\Users\varun\Pictures\dogwalker6.jpg" alt="Fiona Gallagher" class="dog-walker-photo">
+                <h3>Fiona Gallagher</h3>
+                <p>Contact: (666) 777-8888</p>
+                <p>Area: Miami</p>
+                <p>Availability: Tue-Sun, 9 AM - 6 PM</p>
+                <button onclick="scheduleAppointment('Fiona Gallagher')">Schedule Appointment</button>
+            </div>
+
+            <div class="dog-walker-card">
+                <img src="C:\Users\varun\Pictures\dogwalker7.jpg" alt="George Costanza" class="dog-walker-photo">
+                <h3>George Costanza</h3>
+                <p>Contact: (777) 888-9999</p>
+                <p>Area: New York</p>
+                <p>Availability: Mon-Sat, 8 AM - 5 PM</p>
+                <button onclick="scheduleAppointment('George Costanza')">Schedule Appointment</button>
+            </div>
+
+            <div class="dog-walker-card">
+                <img src="C:\Users\varun\Pictures\dogwalker8.jpg" alt="Hannah Baker" class="dog-walker-photo">
+                <h3>Hannah Baker</h3>
+                <p>Contact: (888) 999-0000</p>
+                <p>Area: Boston</p>
+                <p>Availability: Tue-Sun, 10 AM - 6 PM</p>
+                <button onclick="scheduleAppointment('Hannah Baker')">Schedule Appointment</button ```html
+            </div>
+
+            <div class="dog-walker-card">
+                <img src="C:\Users\varun\Pictures\dogwalker9.jpg" alt="Ian Malcolm" class="dog-walker-photo">
+                <h3>Ian Malcolm</h3>
+                <p>Contact: (999) 000-1111</p>
+                <p>Area: San Diego</p>
+                <p>Availability: Mon-Fri, 9 AM - 5 PM</p>
+                <button onclick="scheduleAppointment('Ian Malcolm')">Schedule Appointment</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Skill Match. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function scheduleAppointment(dogWalkerName) {
+            alert('Scheduling an appointment with ' + dogWalkerName);
+            // Here you can add functionality to redirect to a scheduling page or open a modal
+        }
+    </script>
+</body>
+</html>

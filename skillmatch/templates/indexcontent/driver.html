@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drivers - Skill Match</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif; /* Font style set to Roboto */
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(to right, #512da8, #5c6bc0);
+            color: white;
+            padding: 10px 0; /* Decreased padding */
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .container {
+            max-width: 1200px;
+            background-color: #fff;
+            padding: 15px; /* Decreased padding */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            margin: 20px 0;
+        }
+
+        h2 {
+            font-size: 1.5rem; /* Decreased font size */
+            margin-bottom: 10px; /* Decreased margin */
+            text-align: center;
+            color: #512da8;
+        }
+
+        .drivers {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .driver-card {
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 10px; /* Decreased padding */
+            width: 280px; /* Decreased width */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .driver-photo {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        button {
+            background: linear-gradient(to right, #512da8, #5c6bc0);
+            color: #fff;
+            padding: 8px 0; /* Decreased padding */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            margin-top: 8px; /* Decreased margin */
+            width: 100%;
+            font-size: 0.9rem; /* Decreased font size */
+        }
+
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background: linear-gradient(to right, #5c6bc0, #512da8);
+            color: white;
+            text-align: center;
+            padding: 8px; /* Decreased padding */
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            position: relative;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        @media screen and (max-width: 480px) {
+            .container {
+                padding: 10px; /* Decreased padding */
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">Skill Match - Drivers</div>
+    </header>
+
+    <!-- Drivers Section -->
+    <div class="container">
+        <h2>Find Your Driver</h2>
+        <div class="drivers">
+            <div class="driver-card">
+                <img src="driver1.jpg" alt="Raj Nair" class="driver-photo">
+                <h3>Raj Nair</h3>
+                <p>Contact: (987) 654-3210</p>
+                <p>Area: Kochi</p>
+                <p>Availability: Mon-Fri, 8 AM - 4 PM</p>
+                <button onclick="scheduleAppointment('Raj Nair')">Schedule Appointment</button>
+            </div>
+
+            <div class="driver-card">
+                <img src="driver2.jpg" alt="Anita Menon" class="driver-photo">
+                <h3>Anita Menon</h3>
+                <p>Contact: (876) 543-2109</p>
+                <p>Area: Thiruvananthapuram</p>
+                <p>Availability: Tue-Sat, 9 AM - 5 PM</p>
+                <button onclick="scheduleAppointment('Anita Menon')">Schedule Appointment</button>
+            </div>
+
+            <div class="driver-card">
+                <img src="driver3.jpg" alt="Vijay Kumar" class="driver-photo">
+                <h3>Vijay Kumar</h3>
+                <p>Contact: (765) 432-1098</p>
+                <p>Area: Kozhikode</p>
+                <p>Availability: Mon-Sun, 7 AM - 3 PM</p>
+                <button onclick="scheduleAppointment('Vijay Kumar')">Schedule Appointment</button>
+            </div>
+
+            <div class="driver-card">
+                <img src="driver4.jpg" alt="Lakshmi Iyer" class="driver-photo">
+                <h3>Lakshmi Iyer</h3>
+                <p>Contact: (654) 321-0987</p>
+                <p>Area: Malappuram</p>
+                <p>Availability: Wed-Sun, 10 AM - 6 PM</p>
+                <button onclick="scheduleAppointment('Lakshmi Iyer')">Schedule Appointment</button>
+            </div>
+
+            <div class="driver-card">
+                <img src="driver5.jpg" alt="Suresh Pillai" class="driver-photo">
+                <h3>Suresh Pillai</h3>
+                <p>Contact: (543) 210-9876</p>
+                <p>Area: Thrissur</p>
+                <p>Availability: Mon-Fri, 9 AM - 5 PM</p>
+                <button onclick="scheduleAppointment('Suresh Pillai')">Schedule Appointment</button>
+            </div>
+
+            <div class="driver-card">
+                <img src="driver6.jpg" alt="Meera Ramesh" class="driver-photo">
+                <h3>Meera Ramesh</h3>
+                <p>Contact: (432) 109-8765</p>
+                <p>Area: Palakkad</p>
+                <p>Availability: Tue-Sun, 8 AM - 4 PM</p>
+                <button onclick="scheduleAppointment('Meera Ramesh')">Schedule Appointment</button>
+            </div>
+
+            <div class="driver-card">
+                <img src="driver7.jpg" alt="Arjun Nair" class="driver-photo">
+                <h3>Arjun Nair</h3>
+                <p>Contact: (321) 098-7654</p>
+                <p>Area: Kottayam</p>
+                <p>Availability: Mon-Sat, 9 AM - 5 PM</p>
+                <button onclick="scheduleAppointment('Arjun Nair')">Schedule Appointment</button>
+            </div>
+
+            <div class="driver-card">
+                <img src="driver8.jpg" alt="Deepa Varma" class="driver-photo">
+                <h3>Deepa Varma</h3>
+                <p>Contact: (210) 987-6543</p>
+                <p>Area: Alappuzha</p>
+                <p>Availability: Wed-Sun, 12 PM - 8 PM</p>
+                <button onclick="scheduleAppointment('Deepa Varma')">Schedule Appointment</button>
+            </div>
+
+            <div class="driver-card">
+                <img src="driver9.jpg" alt="Ravi Menon" class="driver-photo">
+                <h3>Ravi Menon</h3>
+                <p>Contact: (109) 876-5432</p>
+                <p>Area: Ernakulam</p>
+                <p>Availability: Mon-Fri, 8 AM - 4 PM</p>
+                <button onclick="scheduleAppointment('Ravi Menon ')">Schedule Appointment</button>
+            </div>
+
+            <div class="driver-card">
+                <img src="driver10.jpg" alt="Nisha Thomas" class="driver-photo">
+                <h3>Nisha Thomas</h3>
+                <p>Contact: (098) 765-4321</p>
+                <p>Area: Kannur</p>
+                <p>Availability: Tue-Sat, 9 AM - 5 PM</p>
+                <button onclick="scheduleAppointment('Nisha Thomas')">Schedule Appointment</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Skill Match. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function scheduleAppointment(driverName) {
+            alert('Scheduling an appointment with ' + driverName);
+            // Here you can add functionality to redirect to a scheduling page or open a modal
+        }
+    </script>
+</body>
+</html>

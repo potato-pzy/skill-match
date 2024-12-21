@@ -25,7 +25,10 @@
             justify-content: flex-start;
             min-height: 100vh;
         }
-
+        a {
+            text-decoration: none;
+            color: black;
+        }
         header {
             background: linear-gradient(to right, #512da8, #5c6bc0);
             color: #fff;
@@ -223,13 +226,12 @@
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="#">Services</a></li>
                 <li><a href="{% url 'about' %}">About</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="">Contact</a></li>
                 {% if request.user.is_authenticated %}
                     <li><a href="{% url 'logout' %}">Logout</a></li>
                 {% else %}
-                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'who_are_you' %}">Login</a></li>
                 {% endif %}
             </ul>
         </nav>
@@ -257,7 +259,7 @@
         }
 
         function registerNow() {
-            window.location.href = "{% url 'login' %}"; // Replace "#" with the registration page URL
+            window.location.href = "{% url 'who_are_you' %}"; // Replace "#" with the registration page URL
         }
 
         setTimeout(showPopup, 10000); // Show the popup after 10 seconds
@@ -265,5 +267,4 @@
     {% endif %}
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </body>
-
 </html>

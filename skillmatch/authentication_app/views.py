@@ -61,6 +61,8 @@ def logout_view(request):
     logout(request)
     return redirect(home)
 
+def who_are_you(request):
+    return render(request,'authentication_app/who_are_you.html')
 
 def about(request):
     return render(request,'authentication_app/about.html')
