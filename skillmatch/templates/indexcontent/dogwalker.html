@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dog Walkers - Skill Match</title>
+    <title>Dog Walking Services - Skill Match</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap">
     <style>
@@ -12,7 +12,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Roboto', sans-serif; /* Changed font style to Roboto */
+            font-family: 'Roboto', sans-serif;
         }
 
         body {
@@ -28,18 +28,46 @@
         header {
             background: linear-gradient(to right, #512da8, #5c6bc0);
             color: white;
-            padding: 10px 0; /* Decreased padding */
+            padding: 10px 0;
             width: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            margin-left: 20px;
+            padding-left: 500px;
+        }
+
+        nav {
+            margin-right: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            transition: background 0.3s;
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
         }
 
         .container {
             max-width: 1200px;
             background-color: #fff;
-            padding: 15px; /* Decreased padding */
+            padding: 15px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 100%;
@@ -47,47 +75,65 @@
         }
 
         h2 {
-            font-size: 1.5rem; /* Decreased font size */
-            margin-bottom: 10px; /* Decreased margin */
+            font-size: 1.5rem;
+            margin-bottom: 10px;
             text-align: center;
             color: #512da8;
         }
 
-        .dog-walkers {
+        .walkers {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
         }
 
-        .dog-walker-card {
+        .walker-card {
             background: #fff;
             border: 1px solid #ccc;
             border-radius: 10px;
             margin: 10px;
-            padding: 10px; /* Decreased padding */
-            width: 280px; /* Decreased width */
+            padding: 10px;
+            width: 280px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
-        .dog-walker-photo {
-            width: 100px; /* Set a specific width */
-            height: 100px; /* Set a specific height to match the width */
-            border-radius: 50%; /* Make the image circular */
-            object-fit: cover; /* Ensure the image covers the area without distortion */
+        .image-container {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            margin: 0 auto;
+        }
+
+        .walker-photo {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .default-icon {
+            font-size: 50px;
+            color: #ffcc00;
+            display: none;
         }
 
         button {
             background: linear-gradient(to right, #512da8, #5c6bc0);
             color: #fff;
-            padding: 8px 0; /* Decreased padding */
+            padding: 8px 0;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: transform 0.2s ease;
-            margin-top: 8px; /* Decreased margin */
+            margin-top: 8px;
             width: 100%;
-            font-size: 0.9rem; /* Decreased font size */
+            font-size: 0.9rem;
         }
 
         button:hover {
@@ -99,7 +145,7 @@
             background: linear-gradient(to right, #5c6bc0, #512da8);
             color: white;
             text-align: center;
-            padding: 8px; /* Decreased padding */
+            padding: 8px;
             border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             position: relative;
@@ -109,114 +155,154 @@
 
         @media screen and (max-width: 480px) {
             .container {
-                padding: 10px; /* Decreased padding */
+                padding: 10px;
             }
         }
+        
     </style>
 </head>
 
 <body>
     <!-- Header Section -->
     <header>
-        <div class="logo">Skill Match - Dog Walkers</div>
+        <div class="logo">Dog Walking Services</div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="">Contact</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'who_are_you' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
     </header>
 
     <!-- Dog Walkers Section -->
-    <div class ```html
-="container">
+    <div class="container">
         <h2>Find Your Dog Walker</h2>
-        <div class="dog-walkers">
-            <div class="dog-walker-card">
-                <img src="C:\Users\varun\Pictures\dogwalker1.jpg" alt="Alice Johnson" class="dog-walker-photo">
-                <h3>Alice Johnson</h3>
-                <p>Contact: (111) 222-3333</p>
-                <p>Area: Seattle</p>
-                <p>Availability: Mon-Fri, 9 AM - 5 PM</p>
-                <button onclick="scheduleAppointment('Alice Johnson')">Schedule Appointment</button>
+        <div class="walkers">
+            {% for i in walker %}
+            <div class="walker-card">
+                <div class="image-container">
+                    {% if i.profile %}
+                        <img src="{{ i.profile.url }}" alt="{{ i.user.first_name }}" class="walker-photo">
+                    {% else %}
+                        <i class="fa-solid fa-paw default-icon"></i> <!-- Default icon -->
+                    {% endif %}
+                </div>
+                <h3>{{ i.user.first_name }}</h3>
+                <p>Contact: {{ i.phone }}</p>
+                <p>Area: {{ i.area }}</p>
+                <p>Availability: Mon-Fri, {{ i.availability }}</p>
+                <button onclick="scheduleAppointment('{{ i.user.first_name }}')">Schedule Appointment</button>
             </div>
+            {% endfor %}
 
-            <div class="dog-walker-card">
-                <img src="C:\Users\varun\Pictures\dogwalker2.jpg" alt="Bob Smith" class="dog-walker-photo">
-                <h3>Bob Smith</h3>
-                <p>Contact: (222) 333-4444</p>
-                <p>Area: Portland</p>
-                <p>Availability: Tue-Sat, 10 AM - 6 PM</p>
-                <button onclick="scheduleAppointment('Bob Smith')">Schedule Appointment</button>
-            </div>
-
-            <div class="dog-walker-card">
-                <img src="C:\Users\varun\Pictures\dogwalker3.jpg" alt="Charlie Brown" class="dog-walker-photo">
-                <h3>Charlie Brown</h3>
-                <p>Contact: (333) 444-5555</p>
-                <p>Area: San Francisco</p>
-                <p>Availability: Mon-Fri, 8 AM - 4 PM</p>
-                <button onclick="scheduleAppointment('Charlie Brown')">Schedule Appointment</button>
-            </div>
-
-            <div class="dog-walker-card">
-                <img src="C:\Users\varun\Pictures\dogwalker4.jpg" alt="Diana Prince" class="dog-walker-photo">
-                <h3>Diana Prince</h3>
-                <p>Contact: (444) 555-6666</p>
+            <div class="walker-card">
+                <div class="image-container">
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\a3be98bbbd924623b99bd29a77145090.jpg" alt="Jane Smith" class="walker-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-paw default-icon"></i>
+                </div>
+                <h3>Vaishnav B</h3>
+                <p>Contact: (234) 567-8901</p>
                 <p>Area: Los Angeles</p>
-                <p>Availability: Wed-Sun, 11 AM - 7 PM</p>
-                <button onclick="scheduleAppointment('Diana Prince')">Schedule Appointment</button>
+                <p>Availability: Tue-Sat, 10 AM - 6 PM</p>
+                <button onclick="scheduleAppointment('Jane Smith')">Schedule Appointment</button>
             </div>
 
-            <div class="dog-walker-card">
-                <img src="C:\Users\varun\Pictures\dogwalker5.jpg" alt="Ethan Hunt" class="dog-walker-photo">
-                <h3>Ethan Hunt</h3>
-                <p>Contact: (555) 666-7777</p>
+            <div class="walker-card">
+                <div class="image-container">
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\a3be98bbbd924623b99bd29a77145090.jpg" alt="Mike Johnson" class="walker-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-paw default-icon"></i>
+                </div>
+                <h3>Nandu TB</h3>
+                <p>Contact: (345) 678-9012</p>
                 <p>Area: Chicago</p>
+                <p>Availability: Mon-Fri, 8 AM - 4 PM</p>
+                <button onclick="scheduleAppointment('Mike Johnson')">Schedule Appointment</button>
+            </div>
+
+            <div class="walker-card">
+                <div class="image-container">
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\39d0c2912bfa4815a81c7036831ec515.jpg" alt="Emily Davis" class="walker-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-paw default-icon"></i>
+                </div>
+                <h3>Rajan M</h3>
+                <p>Contact: (456) 789-0123</p>
+                <p>Area: Houston</p>
+                <p>Availability: Wed-Sun, 11 AM - 7 PM</p>
+                <button onclick="scheduleAppointment('Emily Davis')">Schedule Appointment</button>
+            </div>
+
+            <div class="walker-card">
+                <div class="image-container">
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\7dca2263a2004d92ae3158e1eda4938c.jpg" alt="Chris Lee" class="walker-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-paw default-icon"></i>
+                </div>
+                <h3>Christopher</h3>
+                <p>Contact: (567) 890-1234</p>
+                <p>Area: Phoenix</p>
                 <p>Availability: Mon-Fri, 10 AM - 5 PM</p>
-                <button onclick="scheduleAppointment('Ethan Hunt')">Schedule Appointment</button>
+                <button onclick="scheduleAppointment('Chris Lee')">Schedule Appointment</button>
             </div>
 
-            <div class="dog-walker-card">
-                <img src="C:\Users\varun\Pictures\dogwalker6.jpg" alt="Fiona Gallagher" class="dog-walker-photo">
-                <h3>Fiona Gallagher</h3>
-                <p>Contact: (666) 777-8888</p>
-                <p>Area: Miami</p>
+            <div class="walker-card">
+                <div class="image-container">
+                    <img src="https://th.bing.com/th/id/OIP._UBYiPy6Uzl1NAHr0c4SPQHaLH?w=117&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Sarah Wilson" class="walker-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-paw default-icon"></i>
+                </div>
+                <h3>Sraman Kumar</h3>
+                <p>Contact: (678) 901-2345</p>
+                <p>Area: Philadelphia</p>
                 <p>Availability: Tue-Sun, 9 AM - 6 PM</p>
-                <button onclick="scheduleAppointment('Fiona Gallagher')">Schedule Appointment</button>
+                <button onclick="scheduleAppointment('Sarah Wilson')">Schedule Appointment</button>
             </div>
 
-            <div class="dog-walker-card">
-                <img src="C:\Users\varun\Pictures\dogwalker7.jpg" alt="George Costanza" class="dog-walker-photo">
-                <h3>George Costanza</h3>
-                <p>Contact: (777) 888-9999</p>
-                <p>Area: New York</p>
+            <div class="walker-card">
+                <div class="image-container">
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\39d0c2912bfa4815a81c7036831ec515.jpg" alt="David Brown" class="walker-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-paw default-icon"></i>
+                </div>
+                <h3>David John</h3>
+                <p>Contact: (789) 012-3456</p>
+                <p>Area: San Antonio</p>
                 <p>Availability: Mon-Sat, 8 AM - 5 PM</p>
-                <button onclick="scheduleAppointment('George Costanza')">Schedule Appointment</button>
+                <button onclick="scheduleAppointment('David Brown')">Schedule Appointment</button>
             </div>
 
-            <div class="dog-walker-card">
-                <img src="C:\Users\varun\Pictures\dogwalker8.jpg" alt="Hannah Baker" class="dog-walker-photo">
-                <h3>Hannah Baker</h3>
-                <p>Contact: (888) 999-0000</p>
-                <p>Area: Boston</p>
-                <p>Availability: Tue-Sun, 10 AM - 6 PM</p>
-                <button onclick="scheduleAppointment('Hannah Baker')">Schedule Appointment</button ```html
-            </div>
-
-            <div class="dog-walker-card">
-                <img src="C:\Users\varun\Pictures\dogwalker9.jpg" alt="Ian Malcolm" class="dog-walker-photo">
-                <h3>Ian Malcolm</h3>
-                <p>Contact: (999) 000-1111</p>
+            <div class="walker-card">
+                <div class="image-container">
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\7dca2263a2004d92ae3158e1eda4938c.jpg" alt="Laura Garcia" class="walker-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-paw default-icon"></i>
+                </div>
+                <h3>Sunil Kumar</h3>
+                <p>Contact: (890) 123-4567</p>
                 <p>Area: San Diego</p>
+                <p>Availability: Tue-Sun, 10 AM - 6 PM</p>
+                <button onclick="scheduleAppointment('Laura Garcia')">Schedule Appointment</button>
+            </div>
+
+            <div class="walker-card">
+                <div class="image-container">
+                    <img src="https://www.bing.com/images/search?view=detailV2&ccid=m6DyFPN2&id=7505F6A0863BB82C06FAB2E4FFBC60097B1CE226&thid=OIP.m6DyFPN2KFFzhIO7LNhHgQHaJA&mediaurl=https%3a%2f%2fimages.livemint.com%2fimg%2f2022%2f02%2f16%2foriginal%2fFLoYKaxVkAEH6tH_1645022048623.jpg&exph=1313&expw=1080&q=kerala+worker+single+images&simid=608030961913961 ```html
+004&FORM=IRPRST&ck=098F8A4F646A87F2022E1CACC5247280&selectedIndex=9" alt="James Martin" class="walker-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-paw default-icon"></i>
+                </div>
+                <h3>James Martin</h3>
+                <p>Contact: (901) 234-5678</p>
+                <p>Area: Dallas</p>
                 <p>Availability: Mon-Fri, 9 AM - 5 PM</p>
-                <button onclick="scheduleAppointment('Ian Malcolm')">Schedule Appointment</button>
+                <button onclick="scheduleAppointment('James Martinez')">Schedule Appointment</button>
             </div>
         </div>
     </div>
 
-    <footer>
-        <p>&copy; 2024 Skill Match. All rights reserved.</p>
-    </footer>
-
     <script>
-        function scheduleAppointment(dogWalkerName) {
-            alert('Scheduling an appointment with ' + dogWalkerName);
-            // Here you can add functionality to redirect to a scheduling page or open a modal
+        function scheduleAppointment(walkerName) {
+            alert('Scheduling an appointment with ' + walkerName);
         }
     </script>
 </body>

@@ -95,15 +95,6 @@
             margin: 10px 0;
         }
 
-        .available-days {
-            max-height: 150px; /* Set a maximum height for the available days section */
-            overflow-y: auto; /* Enable vertical scrolling */
-            margin-bottom: 10px; /* Add some space below the scrollable area */
-            border: 1px solid #ccc; /* Optional: Add a border for better visibility */
-            border-radius: 5px; /* Optional: Add rounded corners */
-            padding: 10px; /* Optional: Add padding inside the box */
-        }
-
         @media screen and (max-width: 480px) {
             .container {
                 padding: 15px;
@@ -131,8 +122,7 @@
         {% endif %}
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type ```html
-="text" name="first_name" placeholder="Your Full Name" value="{{first_name}}" required>
+            <input type="text" name="first_name" placeholder="Your Full Name" value="{{first_name}}" required>
             <input type="email" name="email" placeholder="Enter your email" value="{{email}}" required>
             <select name="job_role">
                 <option value="Electrician">Electrician</option>
@@ -140,21 +130,9 @@
                 <option value="AC service">AC service</option>
                 <option value="Home deep cleaning">Home deep cleaning</option>
                 <option value="Dog walker">Dog walker</option>
-                <option value="Driver">Driver</option>
+                <option value="Driver">Driver</option ```html
             </select>
             <input type="text" name="phone" placeholder="Enter your phone number" value="{{phone}}" required>
-            
-            <!-- Available Days Selection -->
-            <label>Available Days:</label>
-            <div class="available-days">
-                <label><input type="checkbox" name="available_days" value="Monday"> Monday</label><br>
-                <label><input type="checkbox" name="available_days" value="Tuesday"> Tuesday</label><br>
-                <label><input type="checkbox" name="available_days" value="Wednesday"> Wednesday</label><br>
-                <label><input type="checkbox" name="available_days" value="Thursday"> Thursday</label><br>
-                <label><input type="checkbox" name="available_days" value="Friday"> Friday</label><br>
-                <label><input type="checkbox" name="available_days" value="Saturday"> Saturday</label><br>
-                <label><input type="checkbox" name="available_days" value="Sunday"> Sunday</label>
-            </div>
             
             <!-- Start Time and End Time Inputs -->
             <label for="start_time">Start Time:</label>

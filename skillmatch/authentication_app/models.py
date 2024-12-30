@@ -7,7 +7,7 @@ class CustomUser(AbstractUser):
     is_block = models.BooleanField(default=False)
     is_job_seeker = models.BooleanField(default=False)
     
-    
+     
     
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']

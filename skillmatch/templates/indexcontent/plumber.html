@@ -12,7 +12,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Roboto', sans-serif; /* Changed font style to Roboto */
+            font-family: 'Roboto', sans-serif;
         }
 
         body {
@@ -28,18 +28,46 @@
         header {
             background: linear-gradient(to right, #512da8, #5c6bc0);
             color: white;
-            padding: 10px 0; /* Decreased padding */
+            padding: 10px 0;
             width: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: space-between; /* Align items to the ends */
             align-items: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            margin-left: 20px; /* Add some left margin */
+            padding-left: 550px;
+        }
+
+        nav {
+            margin-right: 20px; /* Add some right margin */
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex; /* Align items horizontally */
+            gap: 15px; /* Space between links */
+        }
+
+        nav a {
+            color: white; /* Link color */
+            text-decoration: none; /* Remove underline */
+            padding: 5px 10px; /* Add padding for better click area */
+            transition: background 0.3s; /* Smooth background transition */
+        }
+
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2); /* Add hover effect */
+            border-radius: 5px; /* Rounded corners on hover */
         }
 
         .container {
             max-width: 1200px;
             background-color: #fff;
-            padding: 15px; /* Decreased padding */
+            padding: 15px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 100%;
@@ -47,8 +75,8 @@
         }
 
         h2 {
-            font-size: 1.5rem; /* Decreased font size */
-            margin-bottom: 10px; /* Decreased margin */
+            font-size: 1.5rem;
+            margin-bottom: 10px;
             text-align: center;
             color: #512da8;
         }
@@ -64,30 +92,48 @@
             border: 1px solid #ccc;
             border-radius: 10px;
             margin: 10px;
-            padding: 10px; /* Decreased padding */
-            width: 280px; /* Decreased width */
+            padding: 10px;
+            width: 280px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             text-align: center;
         }
 
+        .image-container {
+            width: 100px; /* Set your desired width */
+            height: 100px; /* Set your desired height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-color: #f0f0f0; /* Optional: background color */
+            border-radius: 50%; /* Make it circular */
+            margin: 0 auto; /* Center the image container */
+        }
+
         .plumber-photo {
-            width: 100px; /* Set a specific width */
-            height: 100px; /* Set a specific height to match the width */
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover; /* Ensures the image covers the container */
             border-radius: 50%; /* Make the image circular */
-            object-fit: cover; /* Ensure the image covers the area without distortion */
+        }
+
+        .default-icon {
+            font-size: 50px; /* Adjust size as needed */
+            color: #ffcc00; /* Change color as needed */
+            display: none; /* Initially hidden */
         }
 
         button {
             background: linear-gradient(to right, #512da8, #5c6bc0);
             color: #fff;
-            padding: 8px 0; /* Decreased padding */
+            padding: 8px 0;
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: transform 0.2s ease;
-            margin-top: 8px; /* Decreased margin */
+            transition: transform  0.2s ease;
+            margin-top: 8px;
             width: 100%;
-            font-size: 0.9rem; /* Decreased font size */
+            font-size: 0.9rem;
         }
 
         button:hover {
@@ -99,7 +145,7 @@
             background: linear-gradient(to right, #5c6bc0, #512da8);
             color: white;
             text-align: center;
-            padding: 8px; /* Decreased padding */
+            padding: 8px;
             border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             position: relative;
@@ -109,99 +155,151 @@
 
         @media screen and (max-width: 480px) {
             .container {
-                padding: 10px; /* Decreased padding */
+                padding: 10px;
             }
         }
+        
     </style>
 </head>
 
 <body>
     <!-- Header Section -->
     <header>
-        <div class="logo">Skill Match - Plumbers</div>
+        <div class="logo">Plumbers</div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="">Contact</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'who_are_you' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>
     </header>
 
     <!-- Plumbers Section -->
     <div class="container">
         <h2>Find Your Plumber</h2>
         <div class="plumbers">
+            {% for i in plumber %}
             <div class="plumber-card">
-                <img src ="C:\Users\varun\Pictures\IMG_4722 - Copy.JPG" alt="Lakshmi Iyer" class="plumber-photo">
-                <h3>Rajesh Kumar</h3>
-                <p>Contact: (987) 654-3210</p>
-                <p>Area: Kochi</p>
-                <p>Availability: Mon-Sat, 9 AM - 5 PM</p>
-                <button onclick="scheduleAppointment('Rajesh Kumar')">Schedule Appointment</button>
+                <div class="image-container">
+                    {% if i.profile %}
+                        <img src="{{ i.profile.url }}" alt="{{ i.user.first_name }}" class="plumber-photo">
+                    {% else %}
+                        <i class="fa-solid fa-water default-icon"></i> <!-- Default icon -->
+                    {% endif %}
+                </div>
+                <h3>{{ i.user.first_name }}</h3>
+                <p>Contact: {{ i.phone }}</p>
+                <p>Area: {{ i.area }}</p>
+                <p>Availability: Mon-Fri, {{ i.availability }}</p>
+                <button onclick="scheduleAppointment('{{ i.user.first_name }}')">Schedule Appointment</button>
+            </div>
+            {% endfor %}
+
+            <div class="plumber-card">
+                <div class="image-container">
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\a3be98bbbd924623b99bd29a77145090.jpg" alt="Jane Smith" class="plumber-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-water default-icon"></i>
+                </div>
+                <h3>vaishnav B</h3>
+                <p>Contact: (234) 567-8901</p>
+                <p>Area: Los Angeles</p>
+                <p>Availability: Tue-Sat, 10 AM - 6 PM</p>
+                <button onclick="scheduleAppointment('Jane Smith')">Schedule Appointment</button>
             </div>
 
             <div class="plumber-card">
-                <img src="D:\poco m2 pro\2023\Camera2.0\IMG_20220123_172855_1.jpg" alt="Geeta Ramesh" class="plumber-photo">
-                <h3>Anil Menon</h3>
-                <p>Contact: (321) 654-9870</p>
-                <p>Area: Thiruvananthapuram</p>
-                <p>Availability: Tue-Sun, 10 AM - 6 PM</p>
-                <button onclick="scheduleAppointment('Anil Menon')">Schedule Appointment</button>
-            </div>
-
-            <div class="plumber-card">
-                <img src="C:\Users\varun\Pictures\IMG_4722 - Copy.JPG" alt="Lakshmi Iyer" class="plumber-photo">
-                <h3>Sureshan</h3>
-                <p>Contact: (555) 123-4567</p>
-                <p>Area: Calicut</p>
+                <div class="image-container">
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\a3be98bbbd924623b99bd29a77145090.jpg" alt="Mike Johnson" class="plumber-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-water default-icon"></i>
+                </div>
+                <h3>Nandu TB</h3>
+                <p>Contact: (345) 678-9012</p>
+                <p>Area: Chicago</p>
                 <p>Availability: Mon-Fri, 8 AM - 4 PM</p>
-                <button onclick="scheduleAppointment('Suresh Nair')">Schedule Appointment</button>
+                <button onclick="scheduleAppointment('Mike Johnson')">Schedule Appointment</button>
             </div>
 
             <div class="plumber-card">
-                <img src="C:\Users\varun\Pictures\IMG_4722 - Copy.JPG" alt="Lakshmi Iyer" class="plumber-photo">
-                <h3>Vishnu Pk</h3>
-                <p>Contact: (444) 987-6543</p>
-                <p>Area: Kollam</p>
+                <div class="image-container">
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\39d0c2912bfa4815a81c7036831ec515.jpg" alt="Emily Davis" class="plumber-photo" onerror="this.style.display='none'; this.nextElement ```html
+Sibling.style.display='block';">
+                    <i class="fa-solid fa-water default-icon"></i>
+                </div>
+                <h3>Rajan m</h3>
+                <p>Contact: (456) 789-0123</p>
+                <p>Area: Houston</p>
                 <p>Availability: Wed-Sun, 11 AM - 7 PM</p>
-                <button onclick="scheduleAppointment('Lakshmi Iyer')">Schedule Appointment</button>
+                <button onclick="scheduleAppointment('Emily Davis')">Schedule Appointment</button>
             </div>
 
             <div class="plumber-card">
-                <img src="C:\Users\varun\Pictures\edited_pxl.jpg" alt="Vijay Menon" class="plumber-photo">
-                <h3>Vijay MS</h3>
-                <p>Contact: (222) 333-4444</p>
-                <p>Area: Kottayam</p>
+                <div class="image-container">
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\7dca2263a2004d92ae3158e1eda4938c.jpg" alt="Chris Lee" class="plumber-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-water default-icon"></i>
+                </div>
+                <h3>Christopher</h3>
+                <p>Contact: (567) 890-1234</p>
+                <p>Area: Phoenix</p>
                 <p>Availability: Mon-Fri, 10 AM - 5 PM</p>
-                <button onclick="scheduleAppointment('Vijay Menon')">Schedule Appointment</button>
+                <button onclick="scheduleAppointment('Chris Lee')">Schedule Appointment</button>
             </div>
 
             <div class="plumber-card">
-                <img src="D:\poco m2 pro\2023\Camera2.0\IMG_20220123_172855_1.jpg" alt="Geeta Ramesh" class="plumber-photo">
-                <h3>Ramesh R</h3>
-                <p>Contact: (666) 777-8888</p>
-                <p>Area: Malappuram</p>
+                <div class="image-container">
+                    <img src="https://th.bing.com/th/id/OIP._UBYiPy6Uzl1NAHr0c4SPQHaLH?w=117&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Sarah Wilson" class="plumber-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-water default-icon"></i>
+                </div>
+                <h3>Sraman kumar</h3>
+                <p>Contact: (678) 901-2345</p>
+                <p>Area: Philadelphia</p>
                 <p>Availability: Tue-Sun, 9 AM - 6 PM</p>
-                <button onclick="scheduleAppointment('Geeta Ramesh')">Schedule Appointment</button>
+                <button onclick="scheduleAppointment('Sarah Wilson')">Schedule Appointment</button>
             </div>
 
             <div class="plumber-card">
-                <img src="D:\poco m2 pro\2023\Camera2.0\IMG_20220123_172855_1.jpg" alt="Ravi Kumar" class="plumber-photo">
-                <h3>Ravi Kumar</h3>
-                <p>Contact: (888) 999-0000</p>
-                <p>Area: Ernakulam</p>
+                <div class="image-container">
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\39d0c2912bfa4815a81c7036831ec515.jpg" alt="David Brown" class="plumber-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-water default-icon"></i>
+                </div>
+                <h3>David john</h3>
+                <p>Contact: (789) 012-3456</p>
+                <p>Area: San Antonio</p>
                 <p>Availability: Mon-Sat, 8 AM - 5 PM</p>
-                <button onclick="scheduleAppointment('Ravi Kumar')">Schedule Appointment</button>
+                <button onclick="scheduleAppointment('David Brown')">Schedule Appointment</button>
             </div>
 
             <div class="plumber-card">
-                <img src="D:\poco m2 pro\2023\Camera2.0\IMG_20220123_172855_1.jpg" alt="Manoj Nair" class="plumber-photo">
-                <h3>Manoj Nair</h3>
-                <p>Contact: (777) 888- 9999</p>
-                <p>Area: Palakkad</p>
+                <div class="image-container">
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\7dca2263a2004d92ae3158e1eda4938c.jpg" alt="Laura Garcia" class="plumber-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-water default-icon"></i>
+                </div>
+                <h3>sunil kumar</h3>
+                <p>Contact: (890) 123-4567</p>
+                <p>Area: San Diego</p>
                 <p>Availability: Tue-Sun, 10 AM - 6 PM</p>
-                <button onclick="scheduleAppointment('Manoj Nair')">Schedule Appointment</button>
+                <button onclick="scheduleAppointment('Laura Garcia')">Schedule Appointment</button>
+            </div>
+
+            <div class="plumber-card">
+                <div class="image-container">
+                    <img src="https://www.bing.com/images/search?view=detailV2&ccid=m6DyFPN2&id=7505F6A0863BB82C06FAB2E4FFBC60097B1CE226&thid=OIP.m6DyFPN2KFFzhIO7LNhHgQHaJA&mediaurl=https%3a%2f%2fimages.livemint.com%2fimg% ```html
+2f2022%2f02%2f16%2foriginal%2fFLoYKaxVkAEH6tH_1645022048623.jpg&exph=1313&expw=1080&q=kerala+worker+single+images&simid=608030961913961004&FORM=IRPRST&ck=098F8A4F646A87F2022E1CACC5247280&selectedIndex=9&itb=0" alt="James Martin" class="plumber-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-water default-icon"></i>
+                </div>
+                <h3>James Martin</h3>
+                <p>Contact: (901) 234-5678</p>
+                <p>Area: Dallas</p>
+                <p>Availability: Mon-Fri, 9 AM - 5 PM</p>
+                <button onclick="scheduleAppointment('James Martinez')">Schedule Appointment</button>
             </div>
         </div>
     </div>
-
-    <footer>
-        <p>&copy; 2024 Skill Match. All rights reserved.</p>
-    </footer>
 
     <script>
         function scheduleAppointment(plumberName) {
