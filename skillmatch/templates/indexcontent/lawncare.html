@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home Deep Cleaning - Skill Match</title>
+    <title>Lawn Care Technician - Skill Match</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap">
     <style>
@@ -81,13 +81,13 @@
             color: #512da8;
         }
 
-        .cleaners {
+        .ac-services {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
         }
 
-        .cleaner-card {
+        .ac-service-card {
             background: #fff;
             border: 1px solid #ccc;
             border-radius: 10px;
@@ -110,7 +110,7 @@
             margin: 0 auto;
         }
 
-        .cleaner-photo {
+        .ac-service-photo {
             max-width: 100%;
             max-height: 100%;
             object-fit: cover;
@@ -128,7 +128,7 @@
             color: #fff;
             padding: 8px 0;
             border: none;
-            border-radius: 5px;
+ border-radius: 5px;
             cursor: pointer;
             transition: transform 0.2s ease;
             margin-top: 8px;
@@ -147,8 +147,7 @@
             text-align: center;
             padding: 8px;
             border-radius: 5px;
-            box-shadow: 0 4px 6 
-px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             position: relative;
             width: 100%;
             margin: 10px 0;
@@ -166,7 +165,7 @@ px rgba(0, 0, 0, 0.2);
 <body>
     <!-- Header Section -->
     <header>
-        <div class="logo">Home Deep Cleaning</div>
+        <div class="logo">Lawn Care Technician</div>
         <nav>
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
@@ -181,17 +180,17 @@ px rgba(0, 0, 0, 0.2);
         </nav>
     </header>
 
-    <!-- Home Cleaners Section -->
+    <!-- Lawn Care Technician Section -->
     <div class="container">
-        <h2>Find Your Home Cleaner</h2>
-        <div class="cleaners">
-            {% for i in cleaner %}
-            <div class="cleaner-card">
+        <h2>Find Your Lawn Care Technician</h2>
+        <div class="ac-services">
+            {% for i in lawncaretechnician %}
+            <div class="ac-service-card">
                 <div class="image-container">
                     {% if i.profile %}
-                        <img src="{{ i.profile.url }}" alt="{{ i.user.first_name }}" class="cleaner-photo">
+                        <img src="{{ i.profile.url }}" alt="{{ i.user.first_name }}" class="ac-service-photo">
                     {% else %}
-                        <i class="fa-solid fa-broom default-icon"></i> <!-- Default icon -->
+                        <i class="fa-solid fa-bolt default-icon"></i> <!-- Default icon -->
                     {% endif %}
                 </div>
                 <h3>{{ i.user.first_name }}</h3>
@@ -202,10 +201,10 @@ px rgba(0, 0, 0, 0.2);
             </div>
             {% endfor %}
 
-            <div class="cleaner-card">
+            <div class="ac-service-card">
                 <div class="image-container">
-                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\a3be98bbbd924623b99bd29a77145090.jpg" alt="Jane Smith" class="cleaner-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fa-solid fa-broom default-icon"></i>
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\a3be98bbbd924623b99bd29a77145090.jpg" alt="Jane Smith" class="ac-service-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-bolt default-icon"></i>
                 </div>
                 <h3>vaishnav B</h3>
                 <p>Contact: (234) 567-8901</p>
@@ -214,10 +213,10 @@ px rgba(0, 0, 0, 0.2);
                 <button onclick="scheduleAppointment('Jane Smith')">Schedule Appointment</button>
             </div>
 
-            <div class="cleaner-card">
+            <div class="ac-service-card">
                 <div class="image-container">
-                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\a3be98bbbd924623b99bd29a77145090.jpg" alt="Mike Johnson" class="cleaner-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fa-solid fa-broom default-icon"></i>
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\a3be98bbbd924623b99bd29a77145090.jpg" alt="Mike Johnson" class="ac-service-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-bolt default-icon"></i>
                 </div>
                 <h3>Nandu TB</h3>
                 <p>Contact: (345) 678-9012</p>
@@ -226,21 +225,23 @@ px rgba(0, 0, 0, 0.2);
                 <button onclick="scheduleAppointment('Mike Johnson')">Schedule Appointment</button>
             </div>
 
-            <div class="cleaner-card">
+            <div class="ac-service-card">
                 <div class="image-container">
-                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\39d0c2912bfa4815a81c7036831ec515.jpg" alt="Emily Davis" class="cleaner-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fa-solid fa-broom default-icon"></i>
+                    <img src="D:\poco m2 pro\2023\Dc ```html
+im-2023jan\39d0c2912bfa4815a81c7036831ec515.jpg" alt="Emily Davis" class="ac-service-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-bolt default-icon"></i>
                 </div>
                 <h3>Rajan m</h3>
                 <p>Contact: (456) 789-0123</p>
                 <p>Area: Houston</p>
                 <p>Availability: Wed-Sun, 11 AM - 7 PM</p>
                 <button onclick="scheduleAppointment('Emily Davis')">Schedule Appointment</button>
-            </div ```html
-            <div class="cleaner-card">
+            </div>
+
+            <div class="ac-service-card">
                 <div class="image-container">
-                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\7dca2263a2004d92ae3158e1eda4938c.jpg" alt="Chris Lee" class="cleaner-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fa-solid fa-broom default-icon"></i>
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\7dca2263a2004d92ae3158e1eda4938c.jpg" alt="Chris Lee" class="ac-service-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-bolt default-icon"></i>
                 </div>
                 <h3>Christopher</h3>
                 <p>Contact: (567) 890-1234</p>
@@ -249,10 +250,10 @@ px rgba(0, 0, 0, 0.2);
                 <button onclick="scheduleAppointment('Chris Lee')">Schedule Appointment</button>
             </div>
 
-            <div class="cleaner-card">
+            <div class="ac-service-card">
                 <div class="image-container">
-                    <img src="https://th.bing.com/th/id/OIP._UBYiPy6Uzl1NAHr0c4SPQHaLH?w=117&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Sarah Wilson" class="cleaner-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fa-solid fa-broom default-icon"></i>
+                    <img src="https://th.bing.com/th/id/OIP._UBYiPy6Uzl1NAHr0c4SPQHaLH?w=117&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Sarah Wilson" class="ac-service-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-bolt default-icon"></i>
                 </div>
                 <h3>Sraman kumar</h3>
                 <p>Contact: (678) 901-2345</p>
@@ -261,10 +262,10 @@ px rgba(0, 0, 0, 0.2);
                 <button onclick="scheduleAppointment('Sarah Wilson')">Schedule Appointment</button>
             </div>
 
-            <div class="cleaner-card">
+            <div class="ac-service-card">
                 <div class="image-container">
-                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\39d0c2912bfa4815a81c7036831ec515.jpg" alt="David Brown" class="cleaner-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fa-solid fa-broom default-icon"></i>
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\39d0c2912bfa4815a81c7036831ec515.jpg" alt="David Brown" class="ac-service-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-bolt default-icon"></i>
                 </div>
                 <h3>David john</h3>
                 <p>Contact: (789) 012-3456</p>
@@ -273,10 +274,10 @@ px rgba(0, 0, 0, 0.2);
                 <button onclick="scheduleAppointment('David Brown')">Schedule Appointment</button>
             </div>
 
-            <div class="cleaner-card">
+            <div class="ac-service-card">
                 <div class="image-container">
-                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\7dca2263a2004d92ae3158e1eda4938c.jpg" alt="Laura Garcia" class="cleaner-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fa-solid fa-broom default-icon"></i>
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\7dca2263a2004d92ae3158e1eda4938c.jpg" alt="Laura Garcia" class="ac-service-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-bolt default-icon"></i>
                 </div>
                 <h3>sunil kumar</h3>
                 <p>Contact: (890) 123-4567</p>
@@ -285,25 +286,24 @@ px rgba(0, 0, 0, 0.2);
                 <button onclick="scheduleAppointment('Laura Garcia')">Schedule Appointment</button>
             </div>
 
-            <div class="cleaner-card">
+            <div class="ac-service-card">
                 <div class="image-container">
-                    <img src="https://www.bing.com/images/search?view=detailV2&ccid=m6DyFPN2&id=7505F6A0863BB82C06FAB2E4FFBC60097B1CE226&thid=OIP.m6DyFPN2KFFzhIO7LNhHgQHaJA&mediaurl=https%3a%2f%2fimages.livemint.com%2fimg%2f2022%2f02%2f16%2foriginal%2fFLoYKaxVkAEH6tH_1645022048623.jpg&exph=1313&expw=1080&q=kerala+worker+single+images&simid=608030961913961004&FORM=IRPRST&ck=098F8A4F646A87F2022E1CACC5247280&selectedIndex=9 ```html
-&itb=0" alt="James Martin" class="cleaner-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fa-solid fa-broom default-icon"></i>
+                    <img src="https://www.bing.com/images/search?view=detailV2&ccid=m6DyFPN2&id=7505F6A0863BB82C06FAB2E4FF BC60097B1CE226&thid=OIP.m6DyFPN2KFFzhIO7LNhHgQHaJA&mediaurl=https%3a%2f%2fimages.livemint.com%2fimg%2f2022%2f02%2f16%2foriginal%2fFLoYKaxVkAEH6tH_1645022048623.jpg&exph=1313&expw=1080&q=kerala+worker+single+images&simid=608030961913961004&FORM=IRPRST&ck=098F8A4F646A87F2022E1CACC5247280" alt="James Martin" class="ac-service-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-bolt default-icon"></i>
                 </div>
                 <h3>James Martin</h3>
                 <p>Contact: (901) 234-5678</p>
                 <p>Area: Dallas</p>
                 <p>Availability: Mon-Fri, 9 AM - 5 PM</p>
-                <button onclick="scheduleAppointment('James Martinez')">Schedule Appointment</button>
+                <button onclick="scheduleAppointment('James Martin')">Schedule Appointment</button>
             </div>
         </div>
     </div>
 
     <script>
-        function scheduleAppointment(cleanerName) {
-            alert('Scheduling an appointment with ' + cleanerName);
-            
+        function scheduleAppointment(lawnCareTechnicianName) {
+            alert('Scheduling an appointment with ' + lawnCareTechnicianName);
+            // Here you can add functionality to redirect to a scheduling page or open a modal
         }
     </script>
 </body>

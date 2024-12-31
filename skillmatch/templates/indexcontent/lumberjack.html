@@ -26,7 +26,7 @@
         }
 
         header {
-            background: linear-gradient(to right, #4caf50, #66bb6a);
+            background: linear-gradient(to right, #512da8, #5c6bc0);
             color: white;
             padding: 10px 0;
             width: 100%;
@@ -39,7 +39,7 @@
         .logo {
             font-size: 1.5rem;
             margin-left: 20px;
-            padding-left: 500px;
+            padding-left: 550px;
         }
 
         nav {
@@ -78,16 +78,16 @@
             font-size: 1.5rem;
             margin-bottom: 10px;
             text-align: center;
-            color: #4caf50;
+            color: #512da8;
         }
 
-        .lumberjacks {
+        .lumberjack-services {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
         }
 
-        .lumberjack-card {
+        .lumberjack-service-card {
             background: #fff;
             border: 1px solid #ccc;
             border-radius: 10px;
@@ -110,7 +110,7 @@
             margin: 0 auto;
         }
 
-        .lumberjack-photo {
+        .lumberjack-service-photo {
             max-width: 100%;
             max-height: 100%;
             object-fit: cover;
@@ -124,7 +124,7 @@
         }
 
         button {
-            background: linear-gradient(to right, #4caf50, #66bb6a);
+            background: linear-gradient(to right, #512da8, #5c6bc0);
             color: #fff;
             padding: 8px 0;
             border: none;
@@ -142,10 +142,10 @@
         }
 
         footer {
-            background: linear-gradient(to right, #66bb6a, #4caf50);
+            background: linear-gradient(to right, #5 c6bc0, #512da8);
             color: white;
             text-align: center;
- padding: 8px;
+            padding: 8px;
             border-radius: 5px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             position: relative;
@@ -180,17 +180,17 @@
         </nav>
     </header>
 
-    <!-- Lumberjacks Section -->
+    <!-- Lumberjack Services Section -->
     <div class="container">
         <h2>Find Your Lumberjack</h2>
-        <div class="lumberjacks">
-            {% for i in lumberjack %}
-            <div class="lumberjack-card">
+        <div class="lumberjack-services">
+            {% for i in lumberjacks %}
+            <div class="lumberjack-service-card">
                 <div class="image-container">
                     {% if i.profile %}
-                        <img src="{{ i.profile.url }}" alt="{{ i.user.first_name }}" class="lumberjack-photo">
+                        <img src="{{ i.profile.url }}" alt="{{ i.user.first_name }}" class="lumberjack-service-photo">
                     {% else %}
-                        <i class="fa-solid fa-user default-icon"></i> <!-- Default icon -->
+                        <i class="fa-solid fa-tree default-icon"></i> <!-- Default icon -->
                     {% endif %}
                 </div>
                 <h3>{{ i.user.first_name }}</h3>
@@ -201,100 +201,101 @@
             </div>
             {% endfor %}
 
-            <div class="lumberjack-card">
+            <div class="lumberjack-service-card">
                 <div class="image-container">
-                    <img src="path/to/image.jpg" alt="John Doe" class="lumberjack-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fa-solid fa-user default-icon"></i>
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\a3be98bbbd924623b99bd29a77145090.jpg" alt="John Doe" class="lumberjack-service-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-tree default-icon"></i>
                 </div>
                 <h3>John Doe</h3>
                 <p>Contact: (234) 567-8901</p>
                 <p>Area: Seattle</p>
-                <p>Availability: Tue-Sat, 8 AM - 4 PM</p>
+                <p>Availability: Tue-Sat, 9 AM - 5 PM</p>
                 <button onclick="scheduleAppointment('John Doe')">Schedule Appointment</button>
             </div>
 
-            <div class="lumberjack-card">
+            <div class="lumberjack-service-card">
                 <div class="image-container">
-                    <img src="path/to/image.jpg" alt="Jane Smith" class="lumberjack-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fa-solid fa-user default-icon"></i>
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\a3be98bbbd924623b99bd29a77145090.jpg" alt="Jane Smith" class="lumberjack-service-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-tree default-icon"></i>
                 </div>
                 <h3>Jane Smith</h3>
                 <p>Contact: (345) 678-9012</p>
                 <p>Area: Portland</p>
-                <p>Availability: Mon-Fri, 9 AM - 5 PM</p>
+                <p>Availability: Mon-Fri, 8 AM - 4 PM</p>
                 <button onclick="scheduleAppointment('Jane Smith')">Schedule Appointment</button>
             </div>
 
-            <div class="lumberjack-card">
+            <div class="lumberjack-service-card">
                 <div class="image-container">
-                    <img src="path/to/image.jpg" alt="Mike Johnson" class="lumberjack-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fa-solid fa-user default-icon"></i>
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\39d0c2912bfa4815a81c7036831ec515.jpg" alt="Mike Johnson" class="lumberjack-service-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-tree default-icon"></i>
                 </div>
                 <h3>Mike Johnson</h3>
-                <p>Contact: (456) 789-0123</p>
-                <p>Area: Denver</p>
+                <p>Contact: (456)  789-0123</p>
+                <p>Area: San Francisco</p>
                 <p>Availability: Wed-Sun, 10 AM - 6 PM</p>
                 <button onclick="scheduleAppointment('Mike Johnson')">Schedule Appointment</button>
             </div>
 
-            <div class="lumberjack-card">
+            <div class="lumberjack-service-card">
                 <div class="image-container">
-                    <img src="path/to/image.jpg" alt="Emily Davis" class="lumberjack-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fa -solid fa-user default-icon"></i>
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\7dca2263a2004d92ae3158e1eda4938c.jpg" alt="Emily Davis" class="lumberjack-service-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-tree default-icon"></i>
                 </div>
                 <h3>Emily Davis</h3>
                 <p>Contact: (567) 890-1234</p>
-                <p>Area: Austin</p>
-                <p>Availability: Mon-Fri, 8 AM - 5 PM</p>
+                <p>Area: Denver</p>
+                <p>Availability: Mon-Fri, 9 AM - 5 PM</p>
                 <button onclick="scheduleAppointment('Emily Davis')">Schedule Appointment</button>
             </div>
 
-            <div class="lumberjack-card">
+            <div class="lumberjack-service-card">
                 <div class="image-container">
-                    <img src="path/to/image.jpg" alt="Chris Lee" class="lumberjack-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fa-solid fa-user default-icon"></i>
-                </div>
-                <h3>Chris Lee</h3>
-                <p>Contact: (678) 901-2345</p>
-                <p>Area: San Francisco</p>
-                <p>Availability: Tue-Sun, 9 AM - 6 PM</p>
-                <button onclick="scheduleAppointment('Chris Lee')">Schedule Appointment</button>
-            </div>
-
-            <div class="lumberjack-card">
-                <div class="image-container">
-                    <img src="path/to/image.jpg" alt="Sarah Wilson" class="lumberjack-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fa-solid fa-user default-icon"></i>
+                    <img src="https://th.bing.com/th/id/OIP._UBYiPy6Uzl1NAHr0c4SPQHaLH?w=117&h=180&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Sarah Wilson" class="lumberjack-service-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-tree default-icon"></i>
                 </div>
                 <h3>Sarah Wilson</h3>
-                <p>Contact: (789) 012-3456</p>
-                <p>Area: Miami</p>
-                <p>Availability: Mon-Sat, 10 AM - 5 PM</p>
+                <p>Contact: (678) 901-2345</p>
+                <p>Area: Austin</p>
+                <p>Availability: Tue-Sun, 10 AM - 6 PM</p>
                 <button onclick="scheduleAppointment('Sarah Wilson')">Schedule Appointment</button>
             </div>
 
-            <div class="lumberjack-card">
+            <div class="lumberjack-service-card">
                 <div class="image-container">
-                    <img src="path/to/image.jpg" alt="David Brown" class="lumberjack-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fa-solid fa-user default-icon"></i>
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\39d0c2912bfa4815a81c7036831ec515.jpg" alt="David Brown" class="lumberjack-service-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-tree default-icon"></i>
                 </div>
                 <h3>David Brown</h3>
-                <p>Contact: (890) 123-4567</p>
-                <p>Area: Orlando</p>
-                <p>Availability: Tue-Sun, 8 AM - 4 PM</p>
+                <p>Contact: (789) 012-3456</p>
+                <p>Area: Miami</p>
+                <p>Availability: Mon-Sat, 8 AM - 5 PM</p>
                 <button onclick="scheduleAppointment('David Brown')">Schedule Appointment</button>
             </div>
 
-            <div class="lumberjack-card">
+            <div class="lumberjack-service-card">
                 <div class="image-container">
-                    <img src="path/to/image.jpg" alt="Laura Garcia" class="lumberjack-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                    <i class="fa-solid fa-user default-icon"></i>
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\7dca2263a2004d92ae3158e1eda4938c.jpg" alt="Laura Garcia" class="lumberjack-service-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-tree default-icon"></i>
                 </div>
                 <h3>Laura Garcia</h3>
-                <p>Contact: (901) 234-5678</p>
-                <p>Area: Atlanta</p>
-                <p>Availability: Mon-Fri, 9 AM - 5 PM</p>
+                <p>Contact: (890) 123-4567</p>
+                <p>Area: Orlando</p>
+                <p>Availability: Tue-Sun, 10 AM - 6 PM</p>
                 <button onclick="scheduleAppointment('Laura Garcia')">Schedule Appointment</button>
+            </div>
+
+            <div class="lumberjack-service-card">
+                <div class="image-container">
+                    <img src="https://www.bing.com/images/search?view=detailV2&ccid=m6DyFPN2&id=7505F6A0863BB82C06FAB2E4FFBC60097B1CE226&thid=OIP.m6DyFPN2KFFzhIO7LNhHgQHaJA&mediaurl=https%3a%2f%2fimages.livemint.com%2fimg%2f2022%2f02%2f16%2foriginal%2fFLoYKaxVkAEH6tH_1645022048623.jpg ```html
+&exph=1313&expw=1080&q=kerala+worker+single+images&simid=608030961913961004&FORM=IRPRST&ck=098F8A4F646A87F2022E1CACC5247280" alt="James Martin" class="lumberjack-service-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i class="fa-solid fa-tree default-icon"></i>
+                </div>
+                <h3>James Martin</h3>
+                <p>Contact: (901) 234-5678</p>
+                <p>Area: Dallas</p>
+                <p>Availability: Mon-Fri, 9 AM - 5 PM</p>
+                <button onclick="scheduleAppointment('James Martin')">Schedule Appointment</button>
             </div>
         </div>
     </div>
@@ -302,6 +303,7 @@
     <script>
         function scheduleAppointment(lumberjackName) {
             alert('Scheduling an appointment with ' + lumberjackName);
+            // Here you can add functionality to redirect to a scheduling page or open a modal
         }
     </script>
 </body>

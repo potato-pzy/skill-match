@@ -126,5 +126,8 @@ def logout_view(request):
 def who_are_you(request):
     return render(request,'authentication_app/who_are_you.html')
 
+def contact(request):
+    return render(request,'authentication_app/contact.html')
+
 def about(request):
     return render(request,'authentication_app/about.html')

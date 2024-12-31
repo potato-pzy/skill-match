@@ -50,4 +50,18 @@ def beautician_view(request):
         'beautician':beautician,
     }
     return render(request, 'indexcontent/beautician.html',context)
+#lumberjack_view
+def lumberjack_view(request):
+    lumberjack = JobSeeker.objects.select_related('user').filter(user__is_job_seeker=True)
+    context = {
+        'lumberjack':lumberjack,
+    }
+    return render(request, 'indexcontent/lumberjack.html',context)
+#lawncare_view
+def lawncare_view(request):
+    lawncare = JobSeeker.objects.select_related('user').filter(user__is_job_seeker=True)
+    context = {
+        'lawncare':lawncare,
+    }
+    return render(request, 'indexcontent/lawncare.html',context)
 

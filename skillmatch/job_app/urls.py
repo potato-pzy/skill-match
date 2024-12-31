@@ -8,5 +8,7 @@ urlpatterns = [
     path('dogwalker/',dogwalker_view,name='dogwalker'),
     path('driver/',driver_view,name='driver'),
     path('beautician/',beautician_view,name='beautician'),
+    path('lumberjack/',lumberjack_view,name='lumberjack'),
+    path('lawncare/',lawncare_view,name='lawncare'),
    
 ]
