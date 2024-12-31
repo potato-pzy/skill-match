@@ -29,12 +29,40 @@
         header {
             background: linear-gradient(to right, #512da8, #5c6bc0);
             color: white;
-            padding: 15px 0;
+            padding: 15px 20px;
             width: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding-left: 550px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #d1c4e9;
         }
 
         .container {
@@ -43,7 +71,7 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
+            width: 90%;
             margin: 20px 0;
         }
 
@@ -96,17 +124,54 @@
         }
 
         .available-days {
-            max-height: 150px; /* Set a maximum height for the available days section */
-            overflow-y: auto; /* Enable vertical scrolling */
-            margin-bottom: 10px; /* Add some space below the scrollable area */
-            border: 1px solid #ccc; /* Optional: Add a border for better visibility */
-            border-radius: 5px; /* Optional: Add rounded corners */
-            padding: 10px; /* Optional: Add padding inside the box */
+            max-height: 150px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding:  10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            nav ul li {
+                margin-left: 10px;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            h2 {
+                font-size: 1.4rem;
+            }
         }
 
         @media screen and (max-width: 480px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul li {
+                margin: 5px 0;
+            }
+
             .container {
-                padding: 15px;
+                width: 95%;
+                padding: 10px;
+            }
+
+            h2 {
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -116,6 +181,18 @@
     <!-- Header Section -->
     <header>
         <div class="logo">Skill Match</div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'who_are_you' %}">Sign In</a></li>
+                {% endif %}
+            </ul>
+        </nav>
     </header>
 
     <!-- Sign Up Form -->
@@ -131,8 +208,7 @@
         {% endif %}
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type ```html
-="text" name="first_name" placeholder="Your Full Name" value="{{first_name}}" required>
+            <input type="text" name="first_name" placeholder="Your Full Name" value="{{first_name}}" required>
             <input type="email" name="email" placeholder="Enter your email" value="{{email}}" required>
             <select name="job_role">
                 <option value="Electrician">Electrician</option>
@@ -158,21 +234,20 @@
             
             <!-- Start Time and End Time Inputs -->
             <label for="start_time">Start Time:</label>
-            <input type="time" name="start_time" id="start_time" required>
+            <input type="time" name="start_time" id="start_time" min="00:00" max="23:30" step="1800" required>
             
             <label for="end_time">End Time:</label>
-            <input type="time" name="end_time" id="end_time" required>
+            <input type="time" name="end_time" id="end_time" min="00:00" max="23:30" step="1800" required>
             
             <input type="text" name="area" placeholder="Enter your area" value="{{area}}" required>
             <input type="file" name="profile" required>
             <input type="password" name="password" placeholder="Create a password" required>
             <input type="password" name="confirm_password" placeholder="Confirm password" required>
-            <input type="hidden" name="is_job_seeker" value="True">
+            <input type="hidden" name ="is_job_seeker" value="True">
             <button type="submit">Sign Up</button>
         </form>
-        <div style="display: flex;width: 400px;justify-content: space-evenly;">
+        <div style="display: flex; width: 100%; justify-content: center;">
             <a href="{% url 'login' %}" style="text-decoration: none;"><h6>Already have an account? Login</h6></a>
-            <a href="{% url 'home' %}" style="text-decoration: none;"><h6>Home</h6></a>
         </div>
     </div>
 

@@ -64,4 +64,24 @@ def lawncare_view(request):
         'lawncare':lawncare,
     }
     return render(request, 'indexcontent/lawncare.html',context)
-
+#welldigger_view
+def welldigger_view(request):
+    welldigger = JobSeeker.objects.select_related('user').filter(user__is_job_seeker=True)
+    context = {
+        'welldigger':welldigger,
+    }
+    return render(request, 'indexcontent/welldigger.html',context)
+#plantkeeper_view
+def plantkeeper_view(request):
+    plantkeeper = JobSeeker.objects.select_related('user').filter(user__is_job_seeker=True)
+    context = {
+        'plantkeeper':plantkeeper,
+    }
+    return render(request, 'indexcontent/plantkeeper.html',context)
+#welder_view
+def welder_view(request):
+    welder = JobSeeker.objects.select_related('user').filter(user__is_job_seeker=True)
+    context = {
+        'welder':welder,
+    }
+    return render(request, 'indexcontent/welder.html',context)
