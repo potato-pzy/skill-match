@@ -40,10 +40,13 @@ def signUpJobSeeker(request):
         
         if is_job_seeker:
             phone = request.POST.get('phone')
-            availability = request.POST.get('availability')
+            available_days = request.POST.getlist('available_days')  # This returns a list of selected days
+            availability = ', '.join(available_days)
             area = request.POST.get('area')
             profile = request.FILES.get('profile')
             job_role = request.POST.get('job_role')
+            start_time = request.POST.get('start_time')
+            end_time = request.POST.get('end_time')
             
             context['phone'] = phone
             context['availability'] = availability
@@ -77,6 +80,9 @@ def signUpJobSeeker(request):
                     availability=availability,
                     area=area,
                     profile=profile if profile else None,  # Handle missing profile
+                    job_role = job_role,
+                    start_time = start_time,
+                    end_time = end_time,
                 )
 
             
@@ -114,7 +120,34 @@ def signIn(request):
             return render(request, 'authentication_app/login.html', {'email': email})
     else:
         return render(request, 'authentication_app/login.html')
-   
+    
+def signIn2(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        try:
+            # Check if the user exists
+            user = CustomUser.objects.get(email=email)
+        except CustomUser.DoesNotExist:
+            # If the email does not match any user
+            messages.error(request, "The email you entered does not exist!")
+            return render(request, 'authentication_app/login_jobseaker.html', {'email': email})
+
+        # Authenticate the user using email/password
+        user = authenticate(request, email=email, password=password)
+
+        if user is not None:
+            # Log in the user
+            login(request, user)
+            return redirect(home)
+            # Redirect based on user role
+        else:
+            # If authentication fails
+            messages.error(request, "Email or Password is incorrect!")
+            return render(request, 'authentication_app/login_jobseaker.html', {'email': email})
+    else:
+        return render(request, 'authentication_app/login_jobseaker.html')
 def home(request):
     
     return render(request,'authentication_app/index.html')

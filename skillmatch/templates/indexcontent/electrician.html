@@ -184,24 +184,44 @@
     <div class="container">
         <h2>Find Your Electrician</h2>
         <div class="electricians">
-            {% for i in electrician %}
+            <!-- {% for i in electrician %}
             <div class="electrician-card">
                 <div class="image-container">
                     {% if i.profile %}
                         <img src="{{ i.profile.url }}" alt="{{ i.user.first_name }}" class="electrician-photo">
                     {% else %}
-                        <i class="fa-solid fa-bolt default-icon"></i> <!-- Default icon -->
+                        <i class="fa-solid fa-bolt default-icon"></i> 
                     {% endif %}
-                </div>
-                <h3>{{ i.user.first_name }}</h3>
+                </div>  
                 <p>Contact: {{ i.phone }}</p>
+                <p>hello</p>
                 <p>Area: {{ i.area }}</p>
                 <p>Availability: Mon-Fri, {{ i.availability }}</p>
                 <button onclick="scheduleAppointment('{{ i.user.first_name }}')">Schedule Appointment</button>
             </div>
+            {% endfor %} -->
+
+            {% for i in electricians %}
+                <div class="electrician-card">
+                    <div class="image-container">
+                        {% if i.profile %}
+                            <img src="{{ i.profile.url }}" alt="{{ i.first_name }}" class="electrician-photo">
+                        {% else %}
+                            <i class="fa-solid fa-bolt default-icon"></i> <!-- Default icon -->
+                        {% endif %}
+                    </div>
+                    <h3>{{ i.user.first_name }}</h3>
+                    <p>Contact: {{ i.phone }}</p>
+                    <p>Area: {{ i.area }}</p>
+                    <p>Availability: {{ i.availability }}</p>
+                    <p>Start time: {{ i.start_time|time:"h:i A" }}</p> <!-- Format time -->
+                    <p>End time: {{ i.end_time|time:"h:i A" }}</p> 
+                    <button onclick="scheduleAppointment('{{ i.first_name }}')">Schedule Appointment</button>
+                </div>
             {% endfor %}
 
-            <div class="electrician-card">
+
+            <!-- <div class="electrician-card">
                 <div class="image-container">
                     <img src="D:\poco m2 pro\2023\Dcim-2023jan\a3be98bbbd924623b99bd29a77145090.jpg" alt="Jane Smith" class="electrician-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <i class="fa-solid fa-bolt default-icon"></i>
@@ -227,8 +247,7 @@
 
             <div class="electrician-card">
                 <div class="image-container">
-                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\39d0c2912bfa4815a81c7036831ec515.jpg ```html
-" alt="Emily Davis" class="electrician-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <img src="D:\poco m2 pro\2023\Dcim-2023jan\39d0c2912bfa4815a81c7036831ec515.jpg" alt="Emily Davis" class="electrician-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <i class="fa-solid fa-bolt default-icon"></i>
                 </div>
                 <h3>Rajan m</h3>
@@ -296,7 +315,7 @@
                 <p>Area: Dallas</p>
                 <p>Availability: Mon-Fri, 9 AM - 5 PM</p>
                 <button onclick="scheduleAppointment('James Martinez')">Schedule Appointment</button>
-            </div>
+            </div> -->
         </div>
     </div>
 

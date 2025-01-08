@@ -206,10 +206,10 @@
         </div>
         {% endfor %}
         {% endif %}
-        <form method="post" enctype="multipart/form-data">
+        <form id="form" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="text" name="first_name" placeholder="Your Full Name" value="{{first_name}}" required>
-            <input type="email" name="email" placeholder="Enter your email" value="{{email}}" required>
+            <input id="email" type="email" name="email" placeholder="Enter your email" value="{{email}}" required>
             <select name="job_role">
                 <option value="Electrician">Electrician</option>
                 <option value="Plumber">Plumber</option>
@@ -217,12 +217,18 @@
                 <option value="Home deep cleaning">Home deep cleaning</option>
                 <option value="Dog walker">Dog walker</option>
                 <option value="Driver">Driver</option>
+                <option value="Beautician">Beautician</option>
+                <option value="Lumberjack">Lumberjack</option>
+                <option value="Lawncare">Lawncare</option>
+                <option value="Welldigger">Welldigger</option>
+                <option value="Plantkeeper">Plantkeeper</option>
+                <option value="Welder">Welder</option>
             </select>
-            <input type="text" name="phone" placeholder="Enter your phone number" value="{{phone}}" required>
+            <input id="phone" type="text" name="phone" placeholder="Enter your phone number" value="{{phone}}" required>
             
             <!-- Available Days Selection -->
             <label>Available Days:</label>
-            <div class="available-days">
+            <div class="availability">
                 <label><input type="checkbox" name="available_days" value="Monday"> Monday</label><br>
                 <label><input type="checkbox" name="available_days" value="Tuesday"> Tuesday</label><br>
                 <label><input type="checkbox" name="available_days" value="Wednesday"> Wednesday</label><br>
@@ -244,10 +250,10 @@
             <input type="password" name="password" placeholder="Create a password" required>
             <input type="password" name="confirm_password" placeholder="Confirm password" required>
             <input type="hidden" name ="is_job_seeker" value="True">
-            <button type="submit">Sign Up</button>
+            <button id="btn" type="submit">Sign Up</button>
         </form>
         <div style="display: flex; width: 100%; justify-content: center;">
-            <a href="{% url 'login' %}" style="text-decoration: none;"><h6>Already have an account? Login</h6></a>
+            <a href="{% url 'login_jobseaker' %}" style="text-decoration: none;"><h6>Already have an account? Login</h6></a>
         </div>
     </div>
 
@@ -260,6 +266,38 @@
             $(".alert").alert("close")
         }, 3000)
     </script>
+    <script>
+        const email = document.querySelector('#email');
+        const phone = document.querySelector('#phone');
+        const form = document.querySelector('#form'); // Select the form element
+    
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent default form submission for validation
+    
+            const regex_email = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            const regex_phone = /^\d{10}$/; // Matches exactly 10 digits
+    
+            const emailValue = email.value.trim();
+            const phoneValue = phone.value.trim();
+    
+            // Email validation
+            if (!regex_email.test(emailValue)) {
+                alert('Invalid email address!');
+                return;
+            }
+    
+            // Phone number validation
+            if (!regex_phone.test(phoneValue)) {
+                alert('Phone number must be exactly 10 digits!');
+                return;
+            }
+    
+            // If both validations pass, submit the form
+            alert('Form submitted successfully!');
+            form.submit(); // Programmatically submit the form
+        });
+        </script>
+    
 </body>
 
 </html>

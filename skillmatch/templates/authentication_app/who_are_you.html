@@ -32,7 +32,7 @@
             padding: 15px 20px;
             width: 100%;
             display: flex;
-            justify-content: space-between;
+            justify-content: space-between; /* Align items to the start and end */
             align-items: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
@@ -41,6 +41,8 @@
             font-size: 1.5rem;
             font-weight: 700;
             letter-spacing: 1px;
+            padding-left: 550px;
+            flex-grow: 1; /* Push the nav to the end */
         }
 
         nav ul {
@@ -124,12 +126,17 @@
         @media screen and (max-width: 480px) {
             header {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
+                padding: 10px;
+            }
+
+            .logo {
+                margin-bottom: 10px; /* Add space between logo and nav */
             }
 
             nav ul {
                 flex-direction: column;
-                align-items: flex-start;
+                align-items: center;
                 margin-top: 10px;
             }
 
@@ -142,14 +149,13 @@
             }
 
             h2 {
-                font-size: 1.2rem;
+                font-size : 1.2rem;
             }
         }
     </style>
 </head>
 
 <body>
-    
     <!-- Header Section -->
     <header>
         <div class="logo">Skill Match</div>
@@ -170,7 +176,7 @@
     <!-- Welcome Section -->
     <div class="container">
         <h2>Who Are You?</h2>
-        <button onclick="window.location.href='{% url 'signup_job_seeker' %}'">Job Seeker</button>
+        <button onclick="window.location.href='{% url 'login_jobseaker' %}'">Job Seeker</button>
         <button onclick="window.location.href='{% url 'login' %}'">Job Provider</button>
     </div>
 

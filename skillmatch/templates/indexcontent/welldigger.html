@@ -196,12 +196,12 @@
                 <h3>{{ i.user.first_name }}</h3>
                 <p>Contact: {{ i.phone }}</p>
                 <p>Area: {{ i.area }}</p>
-                <p>Availability: Mon-Fri, {{ i.availability }}</p>
+                <p>Availability:{{ i.availability }}</p>
                 <button onclick="scheduleAppointment('{{ i.user.first_name }}')">Schedule Appointment</button>
             </div>
             {% endfor %}
 
-            <div class="ac-service-card">
+            <!-- <div class="ac-service-card">
                 <div class="image-container">
                     <img src="D:\poco m2 pro\2023\Dcim-2023jan\a3be98bbbd924623b99bd29a77145090.jpg" alt="Jane Smith" class="ac-service-photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                     <i class="fa-solid fa-bolt default-icon"></i>
@@ -297,7 +297,7 @@ alt="James Martin" class="ac-service-photo" onerror="this.style.display='none'; 
                 <p>Area: Dallas</p>
                 <p>Availability: Mon-Fri, 9 AM - 5 PM</p>
                 <button onclick="scheduleAppointment('James Martin')">Schedule Appointment</button>
-            </div>
+            </div> -->
         </div>
     </div>
 
