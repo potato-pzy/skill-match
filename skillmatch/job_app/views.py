@@ -57,7 +57,7 @@ def homedeepcleaning_view(request):
 def dogwalker_view(request):
     dogwalker = JobSeeker.objects.select_related('user').filter(
         user__is_job_seeker=True,
-        job_role__iexact='Dog walker'  # Filter only dogwalker (case-insensitive)
+        job_role__iexact='Dogwalker'  # Filter only dogwalker (case-insensitive)
     )
     context = {
         'dogwalker':dogwalker,

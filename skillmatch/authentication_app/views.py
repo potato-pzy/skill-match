@@ -47,7 +47,6 @@ def signUpJobSeeker(request):
             job_role = request.POST.get('job_role')
             start_time = request.POST.get('start_time')
             end_time = request.POST.get('end_time')
-            
             context['phone'] = phone
             context['availability'] = availability
             context['area'] = area
