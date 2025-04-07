@@ -1,0 +1,377 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<style>
+       @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* Base styles for all screen sizes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+header {
+    background: linear-gradient(to right, #512da8, #5c6bc0);
+    color: white;
+    padding: 15px 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow for mobile */
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding-left: 0; /* Remove the large left padding */
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 10px; /* Reduced margin */
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 0.9rem; /* Slightly smaller font */
+}
+
+nav ul li a:hover {
+    color: #d1c4e9;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #512da8;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="time"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+button {
+    background: linear-gradient(to right, #512da8, #5c6bc0);
+    color: #fff;
+    padding: 12px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 1rem;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+}
+
+footer {
+    background: linear-gradient(to right, #5c6bc0, #512da8);
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-top: 20px;
+    font-size: 0.8rem;
+}
+
+.availability {
+    max-height: 150px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 0.9rem; /* Smaller font for checkboxes */
+}
+
+.availability label {
+    display: inline-block; /* Keep labels on the same line as checkboxes */
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
+
+.availability input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.container > div {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 15px;
+    font-size: 0.85rem;
+}
+
+.container > div a {
+    text-decoration: none;
+    color: #555;
+}
+
+.container > div a:hover {
+    color: #512da8;
+    text-decoration: underline;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .logo {
+        padding-left: 0;
+        margin-bottom: 10px;
+    }
+
+    nav {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    nav ul li {
+        margin-left: 0;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="time"],
+    select {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+
+    label {
+        font-size: 0.85rem;
+    }
+
+    button {
+        padding: 10px 0;
+        font-size: 0.9rem;
+    }
+
+    nav ul li a {
+        font-size: 0.8rem;
+    }
+
+    .availability {
+        font-size: 0.8rem;
+    }
+
+    .container > div {
+        font-size: 0.8rem;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">Skill Match</div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'who_are_you' %}">Sign In</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Sign Up Form -->
+    <div class="container">
+        <h2>Sign Up</h2>
+        <!-- alert box  -->
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+            <strong>{{message}}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <form id="form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="first_name" placeholder="Your Full Name" value="{{first_name}}" required>
+            <input id="email" type="email" name="email" placeholder="Enter your email" value="{{email}}" required>
+            <select name="job_role">
+                <option value="Electrician">Electrician</option>
+                <option value="Plumber">Plumber</option>
+                <option value="AC service">AC service</option>
+                <option value="Home deep cleaning">Home deep cleaning</option>
+                <option value="Dog walker">Dog walker</option>
+                <option value="Driver">Driver</option>
+                <option value="Beautician">Beautician</option>
+                <option value="Lumberjack">Lumberjack</option>
+                <option value="Lawncare">Lawncare</option>
+                <option value="Welldigger">Welldigger</option>
+                <option value="Plantkeeper">Plantkeeper</option>
+                <option value="Welder">Welder</option>
+            </select>
+            <input id="phone" type="text" name="phone" placeholder="Enter your phone number" value="{{phone}}" required>
+            
+            <!-- Available Days Selection -->
+            <label>Available Days:</label>
+            <div class="availability">
+                <label><input type="checkbox" name="available_days" value="Monday"> Monday</label><br>
+                <label><input type="checkbox" name="available_days" value="Tuesday"> Tuesday</label><br>
+                <label><input type="checkbox" name="available_days" value="Wednesday"> Wednesday</label><br>
+                <label><input type="checkbox" name="available_days" value="Thursday"> Thursday</label><br>
+                <label><input type="checkbox" name="available_days" value="Friday"> Friday</label><br>
+                <label><input type="checkbox" name="available_days" value="Saturday"> Saturday</label><br>
+                <label><input type="checkbox" name="available_days" value="Sunday"> Sunday</label>
+            </div>
+            
+            <!-- Start Time and End Time Inputs -->
+            <label for="start_time">Start Time:</label>
+            <input type="time" name="start_time" id="start_time" min="00:00" max="23:30" step="1800" required>
+            
+            <label for="end_time">End Time:</label>
+            <input type="time" name="end_time" id="end_time" min="00:00" max="23:30" step="1800" required>
+            
+            <input type="text" name="area" placeholder="Enter your area" value="{{area}}" required>
+            <input type="file" name="profile" required>
+            <input type="password" name="password" placeholder="Create a password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm password" required>
+            <input type="hidden" name ="is_job_seeker" value="True">
+            <button id="btn" type="submit">Sign Up</button>
+        </form>
+        <div style="display: flex; width: 100%; justify-content: center;">
+            <a href="{% url 'login_jobseaker' %}" style="text-decoration: none;"><h6>Already have an account? Login</h6></a>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Skill Match. All rights reserved.</p>
+    </footer>
+    <script>
+        setTimeout(() => {
+            $(".alert").alert("close")
+        }, 3000)
+    </script>
+    <script>
+        const email = document.querySelector('#email');
+        const phone = document.querySelector('#phone');
+        const form = document.querySelector('#form'); // Select the form element
+    
+        form.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent default form submission for validation
+    
+            const regex_email = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            const regex_phone = /^\d{10}$/; // Matches exactly 10 digits
+    
+            const emailValue = email.value.trim();
+            const phoneValue = phone.value.trim();
+    
+            // Email validation
+            if (!regex_email.test(emailValue)) {
+                alert('Invalid email address!');
+                return;
+            }
+    
+            // Phone number validation
+            if (!regex_phone.test(phoneValue)) {
+                alert('Phone number must be exactly 10 digits!');
+                return;
+            }
+    
+            // If both validations pass, submit the form
+            alert('Form submitted successfully!');
+            form.submit(); // Programmatically submit the form
+        });
+        </script>
+    
+</body>
+
+{% endblock content %}

@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skill Match - Connect to Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* Base styles for all screen sizes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+header {
+    background: linear-gradient(to right, #512da8, #5c6bc0);
+    color: #fff;
+    width: 100%;
+    padding: 15px 5%; /* Adjusted padding */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow for mobile */
+}
+
+.logo{
+    margin-left: 50px !important;
+}
+
+header .logo {
+    display: flex;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding-left: 0; /* Removed large left padding */
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px; /* Reduced gap for smaller screens */
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.9rem; /* Slightly smaller font for nav */
+    transition: color 0.3s;
+}
+
+header nav ul li a:hover {
+    color: #f9f9f9;
+}
+
+.hero {
+    background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+    width: 100%;
+    text-align: center;
+    padding: 40px 20px; /* Adjusted padding */
+}
+
+.hero h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 15px; /* Adjusted margin */
+}
+
+.hero p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 20px; /* Adjusted margin */
+}
+
+.hero button {
+    background-color: #512da8;
+    color: #fff;
+    border: none;
+    padding: 10px 25px; /* Adjusted padding */
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.hero button:hover {
+    background-color: #5c6bc0;
+}
+
+.categories {
+    width: 100%;
+    padding: 30px 5%; /* Adjusted padding */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Smaller minmax */
+    gap: 15px; /* Adjusted gap */
+}
+
+.categories a {
+    display: block; /* Make the whole card clickable */
+}
+
+.category-card {
+    background-color: #fff;
+    border-radius: 8px; /* Slightly less rounded */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+    padding: 15px; /* Adjusted padding */
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.category-card:hover {
+    transform: translateY(-3px); /* Less pronounced hover */
+}
+
+.category-card i {
+    font-size: 2rem;
+    color: #512da8;
+    margin-bottom: 10px; /* Adjusted margin */
+}
+
+.category-card h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px; /* Adjusted margin */
+}
+
+.category-card p {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+footer.footer-badge {
+    background: linear-gradient(to right, #5c6bc0, #512da8);
+    color: #fff;
+    text-align: center;
+    padding: 12px 25px; /* Adjusted padding */
+    margin: 20px auto; /* Adjusted margin */
+    border-radius: 20px; /* Slightly less rounded */
+    display: inline-block;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); /* Reduced shadow */
+    font-size: 0.8rem;
+    font-weight: 600;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+footer.footer-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Popup Styling */
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    padding: 15px; /* Adjusted padding */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+    border-radius: 8px; /* Slightly less rounded */
+    display: none;
+    z-index: 1000;
+    text-align: center;
+    width: 80%; /* More width on smaller screens */
+    max-width: 300px; /* Smaller max width */
+}
+
+.popup h3 {
+    margin-bottom: 10px; /* Adjusted margin */
+    font-size: 1.1rem;
+}
+
+.popup button {
+    background-color: #512da8;
+    color: #fff;
+    border: none;
+    padding: 8px 15px; /* Adjusted padding */
+    border-radius: 5px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s;
+}
+
+.popup button:hover {
+    background-color: #5c6bc0;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+
+    header .logo {
+        margin-bottom: 10px;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .hero {
+        padding: 30px 20px;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+    }
+
+    .categories {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Even smaller minmax */
+        gap: 10px;
+    }
+
+    .category-card i {
+        font-size: 1.8rem;
+        margin-bottom: 8px;
+    }
+
+    .category-card h3 {
+        font-size: 0.9rem;
+    }
+
+    .category-card p {
+        font-size: 0.7rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+
+    .hero p {
+        font-size: 0.85rem;
+    }
+
+    .categories {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Smallest minmax */
+        padding: 20px 5%;
+    }
+
+    .category-card {
+        padding: 10px;
+    }
+
+    .category-card i {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+
+    .category-card h3 {
+        font-size: 0.8rem;
+        margin-bottom: 3px;
+    }
+
+    .popup {
+        padding: 10px;
+    }
+
+    .popup h3 {
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+
+    .popup button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+        margin: 3px;
+    }
+}
+.hamburger {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #fff;
+}
+
+@media screen and (max-width: 768px) {
+    .hamburger {
+        display: block;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 1100;
+    }
+
+    header nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background-color: #512da8;
+        padding: 10px 0;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        z-index: 1000;
+    }
+
+    header nav.show {
+        display: flex;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    header nav ul li a {
+        font-size: 1rem;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">Skill Match</div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav id="navbar">
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                {% if request.user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'who_are_you' %}">Login</a></li>
+                {% endif %}
+            </ul>
+        </nav>        
+    </header>
+    {% block content %}
+    {% endblock content %}
+    
+    <footer class="footer-badge">
+        <p>&copy; 2024 Skill Match. All rights reserved.</p>
+    </footer>
+
+    <div class="popup" id="popup">
+        <h3>Do you want to register?</h3>
+        <button onclick="registerNow()">Yes</button>
+        <button onclick="closePopup()">No</button>
+    </div>
+    {% if not request.user.is_authenticated %}
+    <script>
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+
+        function registerNow() {
+            window.location.href = "{% url 'who_are_you' %}"; // Replace "#" with the registration page URL
+        }
+
+        setTimeout(showPopup, 10000); // Show the popup after 10 seconds
+        function toggleMenu() {
+        document.getElementById("navbar").classList.toggle("show");
+    }
+    </script>
+    {% endif %}
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+</body>
+</html>

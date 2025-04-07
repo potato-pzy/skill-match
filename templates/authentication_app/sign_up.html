@@ -1,0 +1,260 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+ <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* Base styles for all screen sizes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+header {
+    background: linear-gradient(to right, #512da8, #5c6bc0);
+    color: white;
+    padding: 15px 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow for mobile */
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    font-size: 1.3rem;
+    font-weight: 600;
+    position: static; /* Adjust logo positioning for mobile */
+    transform: none;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin-left: 10px; /* Reduced margin between nav items */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 0.9rem; /* Slightly smaller font for nav links */
+}
+
+nav ul li a:hover {
+    color: #d1c4e9;
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #512da8;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9rem; /* Slightly smaller font for input */
+}
+
+button {
+    background: linear-gradient(to right, #512da8, #5c6bc0);
+    color: #fff;
+    padding: 12px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    width: 100%;
+    margin: 10px 0; /* Slightly more margin top and bottom */
+    font-size: 1rem;
+}
+
+button:hover {
+    transform: translateY(-2px); /* Less pronounced hover effect */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15); /* Reduced shadow on hover */
+}
+
+footer {
+    background: linear-gradient(to right, #5c6bc0, #512da8);
+    color: white;
+    text-align: center;
+    padding: 10px 20px; /* Add horizontal padding */
+    border-radius: 5px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Shadow on top */
+    width: 100%;
+    margin-top: 20px; /* Add margin at the top */
+    font-size: 0.8rem; /* Smaller footer text */
+}
+
+.container > div {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    margin-top: 15px;
+    font-size: 0.85rem; /* Slightly smaller font for links below form */
+}
+
+.container > div a {
+    text-decoration: none;
+    color: #555;
+}
+
+.container > div a:hover {
+    color: #512da8;
+    text-decoration: underline;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .logo {
+        position: static;
+        transform: none;
+        margin-bottom: 10px;
+    }
+
+    nav {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    nav ul li {
+        margin-left: 0;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+
+    button {
+        padding: 10px 0;
+        font-size: 0.9rem;
+    }
+
+    nav ul li a {
+        font-size: 0.8rem;
+    }
+
+    .container > div {
+        font-size: 0.8rem;
+        flex-direction: column; /* Stack links on very small screens */
+        align-items: center;
+    }
+
+    .container > div a {
+        margin: 5px 0; /* Add vertical margin to stacked links */
+    }
+}
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+     
+
+    <!-- Sign Up Form -->
+    <div class="container">
+        <h2>Sign Up</h2>
+        <!-- alert box  -->
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+            <strong>{{message}}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="first_name" placeholder="Your Full Name" value="{{first_name}}" required>
+            <input type="email" name="email" placeholder="Enter your email" value="{{email}}" required>
+            <input type="password" name="password" placeholder="Create a password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+        <div style="display: flex;width: 400px;justify-content: space-evenly;">
+            <a href="{% url 'login' %}" style="text-decoration: none;"><h6>Already have an account? Login</h6></a>
+            <a href="{% url 'home' %}" style="text-decoration: none;"><h6>Home</h6></a>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    
+    <script>
+        setTimeout(() => {
+            $(".alert").alert("close")
+        }, 3000)
+    </script>
+</body>
+{% endblock content %}
