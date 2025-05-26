@@ -1,7 +1,174 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+    width: 100%;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.hero h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.icon-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.icon-container i {
+    font-size: 1.6rem;
+    color: #512da8;
+    transition: transform 0.3s, color 0.3s;
+    cursor: pointer;
+}
+
+.icon-container i:hover {
+    transform: scale(1.2);
+    color: #333;
+}
+
+/* Contact Section */
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px 5%;
+    max-width: 800px;
+    margin: auto;
+}
+
+.contact-box {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.contact-box i {
+    font-size: 1.8rem;
+    color: #5c6bc0;
+    min-width: 30px;
+}
+
+.contact-info strong {
+    display: block;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 2px;
+}
+
+.contact-info a {
+    color: #512da8;
+    text-decoration: none;
+    font-size: 0.95rem;
+    word-break: break-all;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* --- Responsive Media Queries --- */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+    }
+
+    .contact-box {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .contact-box i {
+        font-size: 1.5rem;
+    }
+
+    .contact-info strong {
+        font-size: 0.95rem;
+    }
+
+    .contact-info a {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.5rem;
+    }
+
+    .hero p {
+        font-size: 0.9rem;
+    }
+
+    .icon-container i {
+        font-size: 1.4rem;
+    }
+
+    .contact-box {
+        padding: 12px 16px;
+    }
+
+    .contact-box i {
+        font-size: 1.4rem;
+    }
+
+    .contact-info strong {
+        font-size: 0.9rem;
+    }
+
+    .contact-info a {
+        font-size: 0.85rem;
+    }
+}
+
+</style>
     <!-- Hero Section -->
     <section class="hero">
         <div class="icon-container">

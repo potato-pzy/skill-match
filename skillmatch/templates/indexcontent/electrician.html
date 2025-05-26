@@ -8,157 +8,246 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
 
-        body {
-            background-color: #f9f9f9;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 100vh;
-        }
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+}
 
-        header {
-            background: linear-gradient(to right, #512da8, #5c6bc0);
-            color: white;
-            padding: 10px 0;
-            width: 100%;
-            display: flex;
-            justify-content: space-between; /* Align items to the ends */
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
+header {
+    background: linear-gradient(to right, #512da8, #5c6bc0);
+    color: white;
+    padding: 10px 5%; /* Adjusted padding for responsiveness */
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+}
 
-        .logo {
-            font-size: 1.5rem;
-            margin-left: 20px; /* Add some left margin */
-            padding-left: 550px;
-        }
+.logo {
+    font-size: 1.3rem; /* Adjusted font size */
+    margin-left: 10px; /* Adjusted margin */
+    padding-left: 0; /* Removed unnecessary padding */
+}
 
-        nav {
-            margin-right: 20px; /* Add some right margin */
-        }
+nav {
+    margin-right: 10px; /* Adjusted margin */
+}
 
-        nav ul {
-            list-style: none;
-            display: flex; /* Align items horizontally */
-            gap: 15px; /* Space between links */
-        }
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 10px; /* Adjusted gap */
+    margin: 0;
+    padding: 0;
+}
 
-        nav a {
-            color: white; /* Link color */
-            text-decoration: none; /* Remove underline */
-            padding: 5px 10px; /* Add padding for better click area */
-            transition: background 0.3s; /* Smooth background transition */
-        }
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 8px; /* Adjusted padding */
+    transition: background 0.3s;
+    font-size: 0.9rem; /* Adjusted font size */
+}
 
-        nav a:hover {
-            background: rgba(255, 255, 255, 0.2); /* Add hover effect */
-            border-radius: 5px; /* Rounded corners on hover */
-        }
+nav a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
 
-        .container {
-            max-width: 1200px;
-            background-color: #fff;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            margin: 20px 0;
-        }
+.container {
+    max-width: 960px; /* Adjusted max width for better mobile flow */
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px; /* Adjusted border radius */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+    width: 95%; /* Adjusted width for mobile */
+    margin: 20px 0;
+}
 
-        h2 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-            text-align: center;
-            color: #512da8;
-        }
+h2 {
+    font-size: 1.3rem; /* Adjusted font size */
+    margin-bottom: 10px;
+    text-align: center;
+    color: #512da8;
+}
 
-        .electricians {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+.electricians {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 
-        .electrician-card {
-            background: #fff;
-            border: 1px solid #ccc;
-            border-radius: 10px;
-            margin: 10px;
-            padding: 10px;
-            width: 280px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
+.electrician-card {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px; /* Adjusted border radius */
+    margin: 10px;
+    padding: 10px;
+    width: calc(50% - 20px); /* Two cards on wider mobile screens */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+    text-align: center;
+}
 
-        .image-container {
-            width: 100px; /* Set your desired width */
-            height: 100px; /* Set your desired height */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            background-color: #f0f0f0; /* Optional: background color */
-            border-radius: 50%; /* Make it circular */
-            margin: 0 auto; /* Center the image container */
-        }
+.image-container {
+    width: 80px; /* Adjusted size */
+    height: 80px; /* Adjusted size */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #f0f0f0;
+    border-radius: 50%;
+    margin: 0 auto 8px; /* Added margin-bottom */
+}
 
-        .electrician-photo {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover; /* Ensures the image covers the container */
-            border-radius: 50%; /* Make the image circular */
-        }
+.electrician-photo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
 
-        .default-icon {
-            font-size: 50px; /* Adjust size as needed */
-            color: #ffcc00; /* Change color as needed */
-            display: none; /* Initially hidden */
-        }
+.default-icon {
+    font-size: 40px; /* Adjusted size */
+    color: #ffcc00;
+    display: none; /* Initially hidden */
+}
 
-        button {
-            background: linear-gradient(to right, #512da8, #5c6bc0);
-            color: #fff;
-            padding: 8px 0;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: transform  0.2s ease;
-            margin-top: 8px;
-            width: 100%;
-            font-size: 0.9rem;
-        }
+button {
+    background: linear-gradient(to right, #512da8, #5c6bc0);
+    color: #fff;
+    padding: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    margin-top: 8px;
+    width: 100%;
+    font-size: 0.85rem; /* Adjusted font size */
+}
 
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+button:hover {
+    transform: translateY(-2px); /* Reduced hover effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reduced shadow */
+}
 
-        footer {
-            background: linear-gradient(to right, #5c6bc0, #512da8);
-            color: white;
-            text-align: center;
-            padding: 8px;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            position: relative;
-            width: 100%;
-            margin: 10px 0;
-        }
+footer {
+    background: linear-gradient(to right, #5c6bc0, #512da8);
+    color: white;
+    text-align: center;
+    padding: 8px;
+    border-radius: 5px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Shadow on top */
+    width: 100%;
+    margin-top: 10px;
+    font-size: 0.8rem; /* Adjusted font size */
+}
 
-        @media screen and (max-width: 480px) {
-            .container {
-                padding: 10px;
-            }
-        }
-        
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+    .logo {
+        font-size: 1.2rem;
+        margin-left: 10px;
+    }
+
+    nav ul {
+        gap: 8px;
+    }
+
+    nav a {
+        font-size: 0.85rem;
+        padding: 4px 8px;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    .electrician-card {
+        width: calc(100% - 20px); /* One card per row */
+    }
+
+    .image-container {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 6px;
+    }
+
+    .default-icon {
+        font-size: 35px;
+    }
+
+    h3 {
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+
+    p {
+        font-size: 0.8rem;
+    }
+
+    button {
+        font-size: 0.8rem;
+        padding: 6px 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .logo {
+        font-size: 1.1rem;
+    }
+
+    nav ul {
+        gap: 6px;
+    }
+
+    nav a {
+        padding: 3px 6px;
+    }
+
+    h2 {
+        font-size: 1.1rem;
+    }
+
+    .image-container {
+        width: 60px;
+        height: 60px;
+    }
+
+    .default-icon {
+        font-size: 30px;
+    }
+
+    h3 {
+        font-size: 0.9rem;
+    }
+
+    p {
+        font-size: 0.75rem;
+    }
+
+    button {
+        font-size: 0.75rem;
+    }
+}
     </style>
 </head>
 

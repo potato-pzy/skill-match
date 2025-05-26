@@ -7,173 +7,253 @@
     <title>Sign Up - Skill Match</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+       @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
+/* Base styles for all screen sizes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
 
-        body {
-            background-color: #f9f9f9;
-            color: #333;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 100vh;
-        }
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 0;
+    padding-bottom: 0;
+}
 
-        header {
-            background: linear-gradient(to right, #512da8, #5c6bc0);
-            color: white;
-            padding: 15px 20px;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
+header {
+    background: linear-gradient(to right, #512da8, #5c6bc0);
+    color: white;
+    padding: 15px 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow for mobile */
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 600;
-            padding-left: 550px;
-        }
+.logo {
+    font-size: 1.3rem;
+    font-weight: 600;
+    padding-left: 0; /* Remove the large left padding */
+}
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
+nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
 
-        nav ul li {
-            margin-left: 15px;
-        }
+nav ul li {
+    margin-left: 10px; /* Reduced margin */
+}
 
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    font-size: 0.9rem; /* Slightly smaller font */
+}
 
-        nav ul li a:hover {
-            color: #d1c4e9;
-        }
+nav ul li a:hover {
+    color: #d1c4e9;
+}
 
-        .container {
-            max-width: 400px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 90%;
-            margin: 20px 0;
-        }
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 400px;
+    margin: 20px auto;
+}
 
-        h2 {
-            font-size: 1.6rem;
-            margin-bottom: 15px;
-            text-align: center;
-            color: #512da8;
-        }
+h2 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #512da8;
+}
 
-        input[type="text"],
-        input[type="email"],
-        input[type="password"],
-        input[type="time"],
-        select {
-            width: 100%;
-            padding: 10px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="time"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
 
-        button {
-            background: linear-gradient(to right, #512da8, #5c6bc0);
-            color: #fff;
-            padding: 12px 0;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-            width: 100%;
-            margin: 8px 0;
-        }
+label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #555;
+}
 
-        button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+button {
+    background: linear-gradient(to right, #512da8, #5c6bc0);
+    color: #fff;
+    padding: 12px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    width: 100%;
+    margin: 10px 0;
+    font-size: 1rem;
+}
 
-        footer {
-            background: linear-gradient(to right, #5c6bc0, #512da8);
-            color: white;
-            text-align: center;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-            position: relative;
-            width: 100%;
-            margin: 10px 0;
-        }
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
+}
 
-        .available-days {
-            max-height: 150px;
-            overflow-y: auto;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            padding:  10px;
-        }
+footer {
+    background: linear-gradient(to right, #5c6bc0, #512da8);
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    margin-top: 20px;
+    font-size: 0.8rem;
+}
 
-        @media screen and (max-width: 768px) {
-            .logo {
-                font-size: 1.2rem;
-            }
+.availability {
+    max-height: 150px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 0.9rem; /* Smaller font for checkboxes */
+}
 
-            nav ul li {
-                margin-left: 10px;
-            }
+.availability label {
+    display: inline-block; /* Keep labels on the same line as checkboxes */
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
 
-            .container {
-                padding: 15px;
-            }
+.availability input[type="checkbox"] {
+    margin-right: 5px;
+}
 
-            h2 {
-                font-size: 1.4rem;
-            }
-        }
+.container > div {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 15px;
+    font-size: 0.85rem;
+}
 
-        @media screen and (max-width: 480px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+.container > div a {
+    text-decoration: none;
+    color: #555;
+}
 
-            nav ul {
-                flex-direction: column;
-                align-items: flex-start;
-            }
+.container > div a:hover {
+    color: #512da8;
+    text-decoration: underline;
+}
 
-            nav ul li {
-                margin: 5px 0;
-            }
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 15px;
+    }
 
-            .container {
-                width: 95%;
-                padding: 10px;
-            }
+    .logo {
+        padding-left: 0;
+        margin-bottom: 10px;
+    }
 
-            h2 {
-                font-size: 1.2rem;
-            }
-        }
+    nav {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    nav ul li {
+        margin-left: 0;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="time"],
+    select {
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+
+    label {
+        font-size: 0.85rem;
+    }
+
+    button {
+        padding: 10px 0;
+        font-size: 0.9rem;
+    }
+
+    nav ul li a {
+        font-size: 0.8rem;
+    }
+
+    .availability {
+        font-size: 0.8rem;
+    }
+
+    .container > div {
+        font-size: 0.8rem;
+    }
+}
     </style>
 </head>
 

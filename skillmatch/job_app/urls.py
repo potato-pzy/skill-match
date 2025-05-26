@@ -13,5 +13,6 @@ urlpatterns = [
     path('welldigger/',welldigger_view,name='welldigger'),
     path('plantkeeper/',plantkeeper_view,name='plantkeeper'),
     path('welder/',welder_view,name='welder'),
-   
+    path('jobseeker/login/', login_jobseeker_view, name='login_jobseeker'),
+    path('jobseeker/logout/', logout_jobseeker_view, name='logout_jobseeker'),
 ]
