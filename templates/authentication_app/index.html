@@ -1,0 +1,275 @@
+{% extends 'base/base.html' %}
+{% block content %}
+<style>
+    /* Styles for mobile-friendliness */
+
+/* Base styles for the body */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Styles for the hero section */
+.hero {
+    background-color: #007bff; /* Example primary color */
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.1em;
+    line-height: 1.8;
+    margin: 0 auto;
+    max-width: 600px;
+}
+
+/* Styles for the categories section */
+.categories {
+    padding: 20px;
+}
+
+.categories > div { /* Targeting the inner div */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid */
+    gap: 15px;
+}
+
+.category-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+}
+
+.category-card i {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #007bff; /* Example icon color */
+}
+
+.category-card h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.category-card p {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 0;
+}
+
+.categories a {
+    text-decoration: none;
+    color: inherit;
+    display: block; /* Make the entire card clickable */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 600px) {
+    .hero {
+        padding: 30px 15px;
+    }
+
+    .hero h1 {
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+
+    .categories {
+        padding: 15px;
+    }
+
+    .categories > div {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 10px;
+    }
+
+    .category-card {
+        padding: 15px;
+    }
+
+    .category-card i {
+        font-size: 1.8em;
+        margin-bottom: 8px;
+    }
+
+    .category-card h3 {
+        font-size: 1.1em;
+        margin-bottom: 3px;
+    }
+
+    .category-card p {
+        font-size: 0.85em;
+    }
+}
+
+/* Further adjustments for very small screens */
+@media (max-width: 400px) {
+    .hero h1 {
+        font-size: 1.8em;
+    }
+
+    .categories > div {
+        grid-template-columns: 1fr; /* Stack cards on very small screens */
+    }
+
+    .category-card {
+        padding: 10px;
+    }
+
+    .category-card i {
+        font-size: 1.6em;
+    }
+
+    .category-card h3 {
+        font-size: 1em;
+    }
+
+    .category-card p {
+        font-size: 0.8em;
+    }
+}
+    </style>
+    <section class="hero">
+        <h1>Find the Right Services, Instantly</h1>
+        <p>Skill Match connects you to trusted professionals and businesses in your area. Whether you need repairs, consultations, or services, we've got you covered.</p>
+
+    </section>
+
+    <section class="categories">
+        <div class="categories">
+            <!-- Electrician -->
+            <a href="{% url 'electrician' %}">
+            <div class="category-card">
+                <i class="fa-solid fa-bolt"></i>
+                <h3>Electrician</h3>
+                <p>Connect with skilled electricians for your home or business needs.</p>
+            </div>
+            </a>
+
+        
+            <!-- Plumber -->
+            <a href="{% url 'plumber' %}">
+            <div class="category-card">
+                <i class="fa-solid fa-water"></i>
+                <h3>Plumber</h3>
+                <p>Expert plumbing services for all your water needs.</p><br>
+            </div>
+            </a>
+            
+            <!-- AC Service -->
+            <a href="{% url 'acservice' %}">
+            <div class="category-card">
+                <i class="fa-solid fa-snowflake"></i>
+                <h3>AC Service</h3>
+                <p>Fast and efficient air conditioning services for every season.</p>
+            </div>
+            </a>
+        
+            <!-- Home Deep Cleaning -->
+            <a href="{% url 'homedeepcleaning' %}">
+            <div class="category-card">
+                <i class="fa-solid fa-broom"></i>
+                <h3>Home Deep Cleaning</h3>
+                <p>Professional cleaning for a spotless, fresh start.</p>
+            </div>
+            </a>
+        
+            <!-- Dog Walker -->
+            <a href="{% url 'dogwalker' %}">
+            <div class="category-card">
+                <i class="fa-solid fa-paw"></i>
+                <h3>Dog Walker</h3>
+                <p>Keep your furry friend happy with trusted dog walking services.</p>
+            </div>
+            </a>
+        
+            <!-- Driver -->
+            <a href="{% url 'driver' %}">
+            <div class="category-card">
+                <i class="fa-solid fa-car"></i>
+                <h3>Driver</h3>
+                <p>Safe and reliable transportation whenever you need it.</p>
+            </div>
+            </a>
+        
+            <!-- Beautician -->
+            <a href="{% url 'beautician' %}">
+            <div class="category-card">
+                <i class="fa-solid fa-magic"></i>
+                <h3>Beautician</h3>
+                <p>Enhance your beauty with professional beauty services.</p>
+            </div>
+            </a>
+
+
+            <!-- Lumber Jack -->
+            <a href="{% url 'lumberjack' %}">
+            <div class="category-card">
+                <i class="fa-solid fa-tree"></i>
+                <h3>Lumber Jack</h3>
+                <p>Expert tree cutting and wood services for your needs.</p>
+            </div>
+            </a>
+            
+        
+            <!-- Lawn Care Technician -->
+            <a href="{% url 'lawncare' %}">
+            <div class="category-card">
+                <i class="fa-solid fa-leaf"></i>
+                <h3>Lawn Care Technician</h3>
+                <p>Keep your lawn healthy and beautiful with professional service.</p>
+            </div>
+            </a>
+        
+        
+            <!-- Well Digger -->
+            <a href="{% url 'welldigger' %}">
+            <div class="category-card">
+                <i class="fa-solid fa-water"></i>
+                <h3>Well Digger</h3>
+                <p>Reliable well drilling and water supply services.</p><br><br>
+            </div>
+            </a>
+            <!-- Plant Keeper -->
+            <a href="{% url 'plantkeeper' %}">
+            <div class="category-card">
+                <i class="fa-solid fa-seedling"></i>
+                <h3>Plant Keeper</h3>
+                <p>Expert plant care services to maintain your greenery.</p><br><br>
+            </div>
+            </a>
+        
+            <!-- Welder -->
+            <a href="{% url 'welder' %}">
+            <div class="category-card">
+                <i class="fa-solid fa-tools"></i>
+                <h3>Welder</h3>
+                <p>Quality welding services for construction, repairs, and more.</p><br>
+            </div>
+            </a>
+        </div>
+
+    </section>
+
+{% endblock content %}
