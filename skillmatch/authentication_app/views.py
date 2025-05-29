@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from .models import CustomUser,JobSeeker
+from .models import CustomUser,JobSeeker,JobProvider
 from django.contrib.auth import get_user_model
 User = get_user_model()
 from django.contrib import messages
@@ -163,3 +163,89 @@ def contact(request):
 
 def about(request):
     return render(request,'authentication_app/about.html')
+
+def signUpProvider(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+        company_name = request.POST.get('company_name')
+        phone = request.POST.get('phone')
+        address = request.POST.get('address')
+        
+        context = {
+            'username': username,
+            'email': email,
+            'company_name': company_name,
+            'phone': phone,
+            'address': address,
+        }
+        
+        # Check if passwords match
+        if password != confirm_password:
+            messages.error(request, "Passwords do not match")
+            return render(request, 'authentication_app/sign_up.html', context)
+        
+        # Check if email already exists
+        if CustomUser.objects.filter(email=email).exists():
+            messages.error(request, "Email already exists")
+            return render(request, 'authentication_app/sign_up.html', context)
+        
+        # Create the user and job provider
+        try:
+            user = CustomUser.objects.create_user(
+                username=username,
+                email=email,
+                password=password,
+                is_job_provider=True
+            )
+            
+            JobProvider.objects.create(
+                user=user,
+                company_name=company_name,
+                phone=phone,
+                address=address
+            )
+            
+            return redirect('login_provider')
+        except Exception as e:
+            messages.error(request, f"An error occurred: {str(e)}")
+            return render(request, 'authentication_app/sign_up.html', context)
+
+    return render(request, 'authentication_app/sign_up.html')
+
+def signInProvider(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+
+        try:
+            # Check if the user exists and is a job provider
+            user = CustomUser.objects.get(email=email, is_job_provider=True)
+        except CustomUser.DoesNotExist:
+            messages.error(request, "Invalid email or you are not registered as a job provider!")
+            return render(request, 'authentication_app/login.html', {'email': email})
+
+        # Authenticate the user
+        user = authenticate(request, email=email, password=password)
+
+        if user is not None and user.is_job_provider:
+            login(request, user)
+            return redirect(home)
+        else:
+            messages.error(request, "Email or Password is incorrect!")
+            return render(request, 'authentication_app/login.html', {'email': email})
+    
+    return render(request, 'authentication_app/login.html')
+
+def service_providers(request, service_type):
+    """View to display service providers of a specific type"""
+    providers = JobSeeker.objects.filter(job_role__iexact=service_type)
+    
+    context = {
+        'service_type': service_type.title(),  # Capitalize the service type
+        'providers': providers
+    }
+    
+    return render(request, 'services/service_providers.html', context)

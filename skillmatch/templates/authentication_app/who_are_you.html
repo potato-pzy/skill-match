@@ -1,213 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base/base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Who Are You? - Skill Match</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-       @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+{% block content %}
+<style>
+    body {
+        background-color: #1a1a1a !important;
+        color: white !important;
+    }
 
-/* Base styles for all screen sizes */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-}
-
-body {
-    background-color: #f9f9f9;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 100vh;
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-header {
-    background: linear-gradient(to right, #512da8, #5c6bc0);
-    color: white;
-    padding: 15px 20px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow for mobile */
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-.logo {
-    font-size: 1.3rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    padding-left: 0; /* Remove large left padding */
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 10px; /* Reduced gap for smaller screens */
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.9rem; /* Slightly smaller font for nav links */
-}
-
-.container {
-    max-width: 400px;
-    width: 90%;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-h2 {
-    font-size: 1.6rem;
-    margin-bottom: 20px; /* Increased margin for button spacing */
-    text-align: center;
-    color: #512da8;
-}
-
-button {
-    background: linear-gradient(to right, #512da8, #5c6bc0);
-    color: #fff;
-    padding: 12px 20px; /* Add horizontal padding to buttons */
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.2s ease, background 0.3s ease;
-    width: 100%;
-    max-width: 300px; /* Limit button width */
-    margin: 10px 0; /* Increased vertical margin for spacing */
-    font-size: 1rem;
-}
-
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15);
-    background: linear-gradient(to right, #c2105d, #8a0f48);
-}
-
-footer {
-    background: linear-gradient(to right, #5c6bc0, #512da8);
-    color: white;
-    text-align: center;
-    padding: 10px 20px;
-    border-radius: 5px;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    margin-top: 20px;
-    font-size: 0.8rem;
-}
-
-/* Media Queries for Responsiveness */
-@media screen and (max-width: 768px) {
-    header {
-        flex-direction: column;
+    .choice-container {
+        min-height: calc(100vh - 150px);
+        display: flex;
         align-items: center;
-        padding: 15px;
+        padding: 20px;
+        background-color: #1a1a1a;
     }
 
-    .logo {
-        margin-bottom: 10px;
-    }
-
-    nav {
+    .choice-card {
+        background-color: #000000;
+        border-radius: 15px;
+        overflow: hidden;
         width: 100%;
-        margin-top: 10px;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 30px;
     }
 
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
+    .choice-header {
+        text-align: center;
+        margin-bottom: 30px;
     }
 
-    .container {
-        padding: 15px;
+    .choice-header h2 {
+        color: white;
+        font-size: 24px;
+        font-weight: 600;
     }
 
-    h2 {
-        font-size: 1.4rem;
-        margin-bottom: 15px;
+    .choice-btn {
+        background: linear-gradient(to right, #512da8, #5c6bc0);
+        color: white;
+        border: none;
+        height: 50px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        width: 100%;
+        margin: 15px 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        line-height: 50px;
     }
 
-    button {
-        padding: 10px 15px;
-        font-size: 0.9rem;
-        max-width: 250px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .container {
-        padding: 10px;
+    .choice-btn:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
     }
 
-    h2 {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
+    @media (max-width: 576px) {
+        .choice-container {
+            padding: 15px;
+        }
+
+        .choice-card {
+            padding: 20px;
+        }
+
+        .choice-header h2 {
+            font-size: 20px;
+        }
+
+        .choice-btn {
+            font-size: 15px;
+            height: 45px;
+            line-height: 45px;
+        }
     }
+</style>
 
-    button {
-        padding: 8px 12px;
-        font-size: 0.85rem;
-        max-width: 200px;
-        margin: 8px 0;
-    }
-
-    nav ul li a {
-        font-size: 0.8rem;
-    }
-}
-    </style>
-</head>
-
-<body>
-    <!-- Header Section -->
-    <header>
-        <div class="logo">Skill Match</div>
-        <nav>
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'about' %}">About</a></li>
-                <li><a href="{% url 'contact' %}">Contact</a></li>
-                {% if request.user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% else %}
-                    <li><a href="{% url 'who_are_you' %}">Login</a></li>
-                {% endif %}
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Welcome Section -->
-    <div class="container">
-        <h2>Who Are You?</h2>
-        <button onclick="window.location.href='{% url 'login_jobseeker' %}'">Job Seeker</button>
-        <button onclick="window.location.href='{% url 'login' %}'">Job Provider</button>
+<div class="choice-container">
+    <div class="choice-card">
+        <div class="choice-header">
+            <h2>Who Are You?</h2>
+        </div>
+        <a href="{% url 'login_jobseeker' %}" class="choice-btn">Job Seeker</a>
+        <a href="{% url 'login_provider' %}" class="choice-btn">Job Provider</a>
     </div>
-
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2024 Skill Match. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+</div>
+{% endblock %}

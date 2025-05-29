@@ -30,7 +30,7 @@
         margin-bottom: 30px;
     }
 
-    .login-header h2 {
+    .login-header h3 {
         color: white;
         font-size: 24px;
         font-weight: 600;
@@ -74,20 +74,19 @@
 
     .login-btn:hover {
         opacity: 0.9;
-        transform: translateY(-2px);
     }
 
-    .signup-link {
+    .register-link {
         text-align: center;
         margin-top: 20px;
     }
 
-    .signup-link a {
+    .register-link a {
         color: #5c6bc0;
         text-decoration: none;
     }
 
-    .signup-link p {
+    .register-link p {
         color: rgba(255, 255, 255, 0.7);
         margin: 0;
     }
@@ -98,29 +97,6 @@
         border: none;
         border-radius: 8px;
         margin-bottom: 20px;
-        padding: 15px;
-    }
-
-    .form-label {
-        color: rgba(255, 255, 255, 0.9);
-        margin-bottom: 8px;
-        font-size: 14px;
-    }
-
-    .forgot-password {
-        text-align: right;
-        margin-top: 5px;
-    }
-
-    .forgot-password a {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 14px;
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-
-    .forgot-password a:hover {
-        color: #5c6bc0;
     }
 
     @media (max-width: 576px) {
@@ -131,21 +107,13 @@
         .login-card {
             padding: 20px;
         }
-
-        .login-header h2 {
-            font-size: 20px;
-        }
-
-        .form-control {
-            font-size: 15px;
-        }
     }
 </style>
 
 <div class="login-container">
     <div class="login-card">
         <div class="login-header">
-            <h2>Job Seeker Login</h2>
+            <h3>Sign In</h3>
         </div>
         {% if messages %}
             {% for message in messages %}
@@ -158,23 +126,18 @@
         <form method="POST">
             {% csrf_token %}
             <div class="form-group">
-                <label class="form-label" for="email">Email Address</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" value="{{ email }}" required>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username or Email" required>
             </div>
             <div class="form-group">
-                <label class="form-label" for="password">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
-                <div class="forgot-password">
-                    <a href="#">Forgot Password?</a>
-                </div>
             </div>
             
             <button type="submit" class="login-btn">Sign In</button>
         </form>
 
-        <div class="signup-link">
-            <p>Don't have an account? <a href="{% url 'sign_up_job_seeker' %}">Sign up</a></p>
+        <div class="register-link">
+            <p>Not have an account? <a href="{% url 'register_jobseeker' %}">Sign-up</a></p>
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock %} 

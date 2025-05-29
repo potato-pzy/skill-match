@@ -20,10 +20,6 @@
 body {
     background-color: #f9f9f9;
     color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
     min-height: 100vh;
 }
 
@@ -36,24 +32,33 @@ header {
     background: linear-gradient(to right, #512da8, #5c6bc0);
     color: #fff;
     width: 100%;
-    padding: 15px 5%; /* Adjusted padding */
+    padding: 15px 5%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow for mobile */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 header .logo {
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 1px;
-    padding-left: 0; /* Removed large left padding */
+    text-align: center;
+    flex: 1;
+    margin: 0;
+    padding: 0;
+}
+
+header nav {
+    position: absolute;
+    right: 5%;
 }
 
 header nav ul {
     list-style: none;
     display: flex;
-    gap: 15px; /* Reduced gap for smaller screens */
+    gap: 15px;
     margin: 0;
     padding: 0;
 }
@@ -66,7 +71,7 @@ header nav ul li a {
     text-decoration: none;
     color: #fff;
     font-weight: 500;
-    font-size: 0.9rem; /* Slightly smaller font for nav */
+    font-size: 0.9rem;
     transition: color 0.3s;
 }
 
@@ -177,18 +182,18 @@ footer.footer-badge:hover {
     left: 50%;
     transform: translate(-50%, -50%);
     background: #fff;
-    padding: 15px; /* Adjusted padding */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow */
-    border-radius: 8px; /* Slightly less rounded */
+    padding: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
     display: none;
     z-index: 1000;
     text-align: center;
-    width: 80%; /* More width on smaller screens */
-    max-width: 300px; /* Smaller max width */
+    width: 80%;
+    max-width: 300px;
 }
 
 .popup h3 {
-    margin-bottom: 10px; /* Adjusted margin */
+    margin-bottom: 10px;
     font-size: 1.1rem;
 }
 
@@ -196,7 +201,7 @@ footer.footer-badge:hover {
     background-color: #512da8;
     color: #fff;
     border: none;
-    padding: 8px 15px; /* Adjusted padding */
+    padding: 8px 15px;
     border-radius: 5px;
     margin: 5px;
     cursor: pointer;
@@ -208,96 +213,75 @@ footer.footer-badge:hover {
     background-color: #5c6bc0;
 }
 
+/* Update the hamburger menu styles */
+.hamburger {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #fff;
+    z-index: 1100;
+    transition: all 0.3s ease;
+    position: absolute;
+    left: 5%;
+}
+
 /* Responsive Design */
 @media screen and (max-width: 768px) {
     header {
-        flex-direction: column;
-        align-items: center;
         padding: 15px;
+        justify-content: center;
     }
 
-    header .logo {
-        margin-bottom: 10px;
+    .hamburger {
+        display: block;
+    }
+
+    header nav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: #512da8;
+        padding: 80px 20px 20px;
+        transition: 0.3s ease-in-out;
+        z-index: 1000;
+    }
+
+    header nav.show {
+        left: 0;
     }
 
     header nav ul {
         flex-direction: column;
-        align-items: center;
-        gap: 8px;
+        gap: 20px;
     }
 
-    .hero {
-        padding: 30px 20px;
-    }
-
-    .hero h1 {
-        font-size: 1.8rem;
-    }
-
-    .hero p {
-        font-size: 0.9rem;
-    }
-
-    .categories {
-        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Even smaller minmax */
-        gap: 10px;
-    }
-
-    .category-card i {
-        font-size: 1.8rem;
-        margin-bottom: 8px;
-    }
-
-    .category-card h3 {
-        font-size: 0.9rem;
-    }
-
-    .category-card p {
-        font-size: 0.7rem;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .hero h1 {
-        font-size: 1.6rem;
-    }
-
-    .hero p {
-        font-size: 0.85rem;
-    }
-
-    .categories {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Smallest minmax */
-        padding: 20px 5%;
-    }
-
-    .category-card {
+    header nav ul li a {
+        font-size: 1.2rem;
+        display: block;
         padding: 10px;
     }
 
-    .category-card i {
-        font-size: 1.5rem;
-        margin-bottom: 5px;
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
     }
 
-    .category-card h3 {
-        font-size: 0.8rem;
-        margin-bottom: 3px;
+    .overlay.show {
+        display: block;
     }
 
-    .popup {
-        padding: 10px;
-    }
-
-    .popup h3 {
-        font-size: 1rem;
-        margin-bottom: 8px;
-    }
-
-    .popup button {
-        padding: 6px 12px;
-        font-size: 0.8rem;
-        margin: 3px;
+    header .logo {
+        margin: 0;
+        padding: 0;
+        text-align: center;
     }
 }
     </style>
@@ -305,8 +289,12 @@ footer.footer-badge:hover {
 
 <body>
     <header>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="overlay" onclick="toggleMenu()"></div>
         <div class="logo">Skill Match</div>
-        <nav>
+        <nav id="navbar">
             <ul>
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'about' %}">About</a></li>
@@ -319,18 +307,16 @@ footer.footer-badge:hover {
             </ul>
         </nav>
     </header>
+
     {% block content %}
     {% endblock content %}
     
-    <footer class="footer-badge">
-        <p>&copy; 2024 Skill Match. All rights reserved.</p>
-    </footer>
-
     <div class="popup" id="popup">
         <h3>Do you want to register?</h3>
         <button onclick="registerNow()">Yes</button>
         <button onclick="closePopup()">No</button>
     </div>
+
     {% if not request.user.is_authenticated %}
     <script>
         function showPopup() {
@@ -342,12 +328,39 @@ footer.footer-badge:hover {
         }
 
         function registerNow() {
-            window.location.href = "{% url 'who_are_you' %}"; // Replace "#" with the registration page URL
+            window.location.href = "{% url 'who_are_you' %}";
         }
 
-        setTimeout(showPopup, 10000); // Show the popup after 10 seconds
+        setTimeout(showPopup, 10000);
     </script>
     {% endif %}
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <script>
+    const navbar = document.getElementById('navbar');
+    const overlay = document.querySelector('.overlay');
+    const hamburger = document.querySelector('.hamburger');
+    let isOpen = false;
+
+    function toggleMenu() {
+        isOpen = !isOpen;
+        navbar.classList.toggle('show');
+        overlay.classList.toggle('show');
+        
+        // Change hamburger icon
+        hamburger.innerHTML = isOpen ? 
+            '<i class="fas fa-times"></i>' : 
+            '<i class="fas fa-bars"></i>';
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const isClickInside = navbar.contains(event.target) || 
+                            hamburger.contains(event.target);
+        
+        if (!isClickInside && isOpen) {
+            toggleMenu();
+        }
+    });
+    </script>
 </body>
 </html>

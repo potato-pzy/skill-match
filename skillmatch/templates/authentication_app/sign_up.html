@@ -1,278 +1,268 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base/base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - Skill Match</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+{% block content %}
+<style>
+    body {
+        background-color: #1a1a1a !important;
+        color: white !important;
+    }
 
-/* Base styles for all screen sizes */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-}
-
-body {
-    background-color: #f9f9f9;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 100vh;
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-header {
-    background: linear-gradient(to right, #512da8, #5c6bc0);
-    color: white;
-    padding: 15px 20px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow for mobile */
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-.logo {
-    font-size: 1.3rem;
-    font-weight: 600;
-    position: static; /* Adjust logo positioning for mobile */
-    transform: none;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-}
-
-nav ul li {
-    margin-left: 10px; /* Reduced margin between nav items */
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: white;
-    font-weight: 500;
-    transition: color 0.3s ease;
-    font-size: 0.9rem; /* Slightly smaller font for nav links */
-}
-
-nav ul li a:hover {
-    color: #d1c4e9;
-}
-
-.container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 400px;
-    margin: 20px auto;
-}
-
-h2 {
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-    text-align: center;
-    color: #512da8;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 0.9rem; /* Slightly smaller font for input */
-}
-
-button {
-    background: linear-gradient(to right, #512da8, #5c6bc0);
-    color: #fff;
-    padding: 12px 0;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
-    width: 100%;
-    margin: 10px 0; /* Slightly more margin top and bottom */
-    font-size: 1rem;
-}
-
-button:hover {
-    transform: translateY(-2px); /* Less pronounced hover effect */
-    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15); /* Reduced shadow on hover */
-}
-
-footer {
-    background: linear-gradient(to right, #5c6bc0, #512da8);
-    color: white;
-    text-align: center;
-    padding: 10px 20px; /* Add horizontal padding */
-    border-radius: 5px;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Shadow on top */
-    width: 100%;
-    margin-top: 20px; /* Add margin at the top */
-    font-size: 0.8rem; /* Smaller footer text */
-}
-
-.container > div {
-    display: flex;
-    width: 100%;
-    justify-content: space-evenly;
-    margin-top: 15px;
-    font-size: 0.85rem; /* Slightly smaller font for links below form */
-}
-
-.container > div a {
-    text-decoration: none;
-    color: #555;
-}
-
-.container > div a:hover {
-    color: #512da8;
-    text-decoration: underline;
-}
-
-/* Media Queries for Responsiveness */
-@media screen and (max-width: 768px) {
-    header {
-        flex-direction: column;
+    .signup-container {
+        min-height: calc(100vh - 150px);
+        display: flex;
         align-items: center;
-        padding: 15px;
+        padding: 20px;
+        background-color: #1a1a1a;
     }
 
-    .logo {
-        position: static;
-        transform: none;
-        margin-bottom: 10px;
-    }
-
-    nav {
+    .signup-card {
+        background-color: #000000;
+        border-radius: 15px;
+        overflow: hidden;
         width: 100%;
-        margin-top: 10px;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 30px;
     }
 
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
+    .signup-header {
+        text-align: center;
+        margin-bottom: 30px;
     }
 
-    nav ul li {
-        margin-left: 0;
+    .signup-header h2 {
+        color: white;
+        font-size: 24px;
+        font-weight: 600;
     }
 
-    .container {
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        border: none !important;
+        color: white !important;
+        padding: 15px !important;
+        border-radius: 8px !important;
+        font-size: 16px;
+    }
+
+    .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .form-control:focus {
+        background-color: rgba(255, 255, 255, 0.15) !important;
+        box-shadow: none !important;
+    }
+
+    select.form-control {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 8.825L1.175 4 2.238 2.938 6 6.7l3.763-3.762L10.825 4z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        padding-right: 40px !important;
+    }
+
+    select.form-control option {
+        background-color: #1a1a1a;
+        color: white;
+    }
+
+    .signup-btn {
+        background: linear-gradient(to right, #512da8, #5c6bc0);
+        color: white;
+        border: none;
+        height: 50px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        width: 100%;
+        margin-top: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .signup-btn:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+    }
+
+    .login-link {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .login-link a {
+        color: #5c6bc0;
+        text-decoration: none;
+    }
+
+    .login-link p {
+        color: rgba(255, 255, 255, 0.7);
+        margin: 0;
+    }
+
+    .alert {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        margin-bottom: 20px;
         padding: 15px;
     }
 
-    h2 {
-        font-size: 1.3rem;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .container {
-        padding: 10px;
+    .role-selector {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
     }
 
-    h2 {
-        font-size: 1.2rem;
+    .role-btn {
+        flex: 1;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 2px solid transparent;
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
     }
 
-    input[type="text"],
-    input[type="email"],
-    input[type="password"] {
-        padding: 8px;
-        font-size: 0.85rem;
+    .role-btn.active {
+        border-color: #5c6bc0;
+        background-color: rgba(92, 107, 192, 0.2);
     }
 
-    button {
-        padding: 10px 0;
-        font-size: 0.9rem;
+    @media (max-width: 576px) {
+        .signup-container {
+            padding: 15px;
+        }
+
+        .signup-card {
+            padding: 20px;
+        }
+
+        .signup-header h2 {
+            font-size: 20px;
+        }
+
+        .form-control {
+            font-size: 15px;
+        }
+
+        .role-selector {
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .role-btn {
+            padding: 10px;
+        }
     }
+</style>
 
-    nav ul li a {
-        font-size: 0.8rem;
-    }
-
-    .container > div {
-        font-size: 0.8rem;
-        flex-direction: column; /* Stack links on very small screens */
-        align-items: center;
-    }
-
-    .container > div a {
-        margin: 5px 0; /* Add vertical margin to stacked links */
-    }
-}
-    </style>
-</head>
-
-<body>
-    <!-- Header Section -->
-    <header>
-        <div class="logo">Skill Match</div>
-        <nav>
-            <ul style="list-style: none; display: flex; gap: 20px; margin: 0; padding: 0;">
-                <li><a href="{% url 'home' %}" style="text-decoration: none; color: white;">Home</a></li>
-                <li><a href="{% url 'login' %}" style="text-decoration: none; color: white;">Login</a></li>
-                <li><a href="{% url 'contact' %}" style="text-decoration: none; color: white;">Contact</a></li>
-                <li><a href="{% url 'about' %}" style="text-decoration: none; color: white;">About</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Sign Up Form -->
-    <div class="container">
-        <h2>Sign Up</h2>
-        <!-- alert box  -->
-        {% if messages %}
-        {% for message in messages %}
-        <div class="alert alert-{{message.tags}}">
-            <strong>{{message}}</strong>
+<div class="signup-container">
+    <div class="signup-card">
+        <div class="signup-header">
+            <h2>Create Your Account</h2>
         </div>
-        {% endfor %}
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
         {% endif %}
-        <form method="post">
+
+        <div class="role-selector">
+            <button class="role-btn active" onclick="selectRole('jobseeker')">Job Seeker</button>
+            <button class="role-btn" onclick="selectRole('provider')">Job Provider</button>
+        </div>
+        
+        <form method="POST" id="signupForm">
             {% csrf_token %}
-            <input type="text" name="first_name" placeholder="Your Full Name" value="{{first_name}}" required>
-            <input type="email" name="email" placeholder="Enter your email" value="{{email}}" required>
-            <input type="password" name="password" placeholder="Create a password" required>
-            <input type="password" name="confirm_password" placeholder="Confirm password" required>
-            <button type="submit">Sign Up</button>
+            <div class="form-group">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+            </div>
+
+            <div id="jobseekerFields" class="role-fields">
+                <div class="form-group">
+                    <select class="form-control" id="job_role" name="job_role" required>
+                        <option value="" disabled selected>Select your job role</option>
+                        <option value="Electrician">Electrician</option>
+                        <option value="Plumber">Plumber</option>
+                        <option value="AC service">AC Service</option>
+                        <option value="Home deep cleaning">Home Deep Cleaning</option>
+                        <option value="Dogwalker">Dog Walker</option>
+                        <option value="Driver">Driver</option>
+                        <option value="Beautician">Beautician</option>
+                        <option value="Lumberjack">Lumberjack</option>
+                        <option value="Lawncare">Lawn Care</option>
+                        <option value="Welldigger">Well Digger</option>
+                        <option value="Plantkeeper">Plant Keeper</option>
+                        <option value="Welder">Welder</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="providerFields" class="role-fields" style="display: none;">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Company Name">
+                </div>
+                <div class="form-group">
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Contact Number">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Business Address">
+                </div>
+            </div>
+            
+            <button type="submit" class="signup-btn">Create Account</button>
         </form>
-        <div style="display: flex;width: 400px;justify-content: space-evenly;">
-            <a href="{% url 'login' %}" style="text-decoration: none;"><h6>Already have an account? Login</h6></a>
-            <a href="{% url 'home' %}" style="text-decoration: none;"><h6>Home</h6></a>
+
+        <div class="login-link">
+            <p>Already have an account? <a href="{% url 'login' %}">Sign in</a></p>
         </div>
     </div>
+</div>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2024 Skill Match. All rights reserved.</p>
-    </footer>
-    <script>
-        setTimeout(() => {
-            $(".alert").alert("close")
-        }, 3000)
-    </script>
-</body>
+<script>
+function selectRole(role) {
+    const jobseekerFields = document.getElementById('jobseekerFields');
+    const providerFields = document.getElementById('providerFields');
+    const roleButtons = document.querySelectorAll('.role-btn');
+    const form = document.getElementById('signupForm');
 
-</html>
+    roleButtons.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    if (role === 'jobseeker') {
+        jobseekerFields.style.display = 'block';
+        providerFields.style.display = 'none';
+        form.action = "{% url 'register_jobseeker' %}";
+    } else {
+        jobseekerFields.style.display = 'none';
+        providerFields.style.display = 'block';
+        form.action = "{% url 'register_provider' %}";
+    }
+}
+
+// Initialize with jobseeker selected
+document.addEventListener('DOMContentLoaded', function() {
+    selectRole('jobseeker');
+});
+</script>
+{% endblock %}

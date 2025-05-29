@@ -7,7 +7,7 @@
         color: white !important;
     }
 
-    .login-container {
+    .register-container {
         min-height: calc(100vh - 150px);
         display: flex;
         align-items: center;
@@ -15,7 +15,7 @@
         background-color: #1a1a1a;
     }
 
-    .login-card {
+    .register-card {
         background-color: #000000;
         border-radius: 15px;
         overflow: hidden;
@@ -25,12 +25,12 @@
         padding: 30px;
     }
 
-    .login-header {
+    .register-header {
         text-align: center;
         margin-bottom: 30px;
     }
 
-    .login-header h2 {
+    .register-header h3 {
         color: white;
         font-size: 24px;
         font-weight: 600;
@@ -58,7 +58,7 @@
         box-shadow: none !important;
     }
 
-    .login-btn {
+    .register-btn {
         background: linear-gradient(to right, #512da8, #5c6bc0);
         color: white;
         border: none;
@@ -72,22 +72,21 @@
         transition: all 0.3s ease;
     }
 
-    .login-btn:hover {
+    .register-btn:hover {
         opacity: 0.9;
-        transform: translateY(-2px);
     }
 
-    .signup-link {
+    .login-link {
         text-align: center;
         margin-top: 20px;
     }
 
-    .signup-link a {
+    .login-link a {
         color: #5c6bc0;
         text-decoration: none;
     }
 
-    .signup-link p {
+    .login-link p {
         color: rgba(255, 255, 255, 0.7);
         margin: 0;
     }
@@ -101,39 +100,13 @@
         padding: 15px;
     }
 
-    .form-label {
-        color: rgba(255, 255, 255, 0.9);
-        margin-bottom: 8px;
-        font-size: 14px;
-    }
-
-    .forgot-password {
-        text-align: right;
-        margin-top: 5px;
-    }
-
-    .forgot-password a {
-        color: rgba(255, 255, 255, 0.7);
-        font-size: 14px;
-        text-decoration: none;
-        transition: color 0.3s ease;
-    }
-
-    .forgot-password a:hover {
-        color: #5c6bc0;
-    }
-
     @media (max-width: 576px) {
-        .login-container {
+        .register-container {
             padding: 15px;
         }
 
-        .login-card {
+        .register-card {
             padding: 20px;
-        }
-
-        .login-header h2 {
-            font-size: 20px;
         }
 
         .form-control {
@@ -142,10 +115,10 @@
     }
 </style>
 
-<div class="login-container">
-    <div class="login-card">
-        <div class="login-header">
-            <h2>Job Seeker Login</h2>
+<div class="register-container">
+    <div class="register-card">
+        <div class="register-header">
+            <h3>Create Business Account</h3>
         </div>
         {% if messages %}
             {% for message in messages %}
@@ -158,23 +131,33 @@
         <form method="POST">
             {% csrf_token %}
             <div class="form-group">
-                <label class="form-label" for="email">Email Address</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" value="{{ email }}" required>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
             </div>
             <div class="form-group">
-                <label class="form-label" for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
-                <div class="forgot-password">
-                    <a href="#">Forgot Password?</a>
-                </div>
+                <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Company Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Business Email" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Contact Number" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="address" name="address" placeholder="Business Address" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
             </div>
             
-            <button type="submit" class="login-btn">Sign In</button>
+            <button type="submit" class="register-btn">Create Business Account</button>
         </form>
 
-        <div class="signup-link">
-            <p>Don't have an account? <a href="{% url 'sign_up_job_seeker' %}">Sign up</a></p>
+        <div class="login-link">
+            <p>Already have an account? <a href="{% url 'login_provider' %}">Sign in</a></p>
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock %} 
