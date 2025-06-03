@@ -372,15 +372,21 @@ footer.footer-badge:hover {
     {% block content %}
     {% endblock content %}
     
-    <footer class="footer-badge">
-        <p>&copy; 2024 Skill Match. All rights reserved.</p>
-    </footer>
+
 
     <div class="popup" id="popup">
         <h3>Do you want to register?</h3>
         <button onclick="registerNow()">Yes</button>
         <button onclick="closePopup()">No</button>
     </div>
+    
+    <!-- Hamburger menu script -->
+    <script>
+        function toggleMenu() {
+            document.getElementById("navbar").classList.toggle("show");
+        }
+    </script>
+
     {% if not request.user.is_authenticated %}
     <script>
         function showPopup() {
@@ -396,9 +402,6 @@ footer.footer-badge:hover {
         }
 
         setTimeout(showPopup, 10000); // Show the popup after 10 seconds
-        function toggleMenu() {
-        document.getElementById("navbar").classList.toggle("show");
-    }
     </script>
     {% endif %}
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
