@@ -3,7 +3,7 @@ services:
     name: skillmatch
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn skillMatch_project.wsgi:application
+    startCommand: gunicorn skillmatch.wsgi:application
     envVars:
       - key: PYTHON_VERSION
         value: 3.9.0
@@ -17,8 +17,3 @@ services:
       sizeGB: 1
     healthCheckPath: /
     autoDeploy: true
-
-  - type: postgresql
-    name: skillmatch_db
-    ipAllowList: []
-    plan: free 
