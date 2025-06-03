@@ -1,0 +1,92 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #1a1a1a !important;
+        color: white !important;
+    }
+
+    .choice-container {
+        min-height: calc(100vh - 150px);
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        background-color: #1a1a1a;
+    }
+
+    .choice-card {
+        background-color: #000000;
+        border-radius: 15px;
+        overflow: hidden;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 30px;
+    }
+
+    .choice-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .choice-header h2 {
+        color: white;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .choice-btn {
+        background: linear-gradient(to right, #512da8, #5c6bc0);
+        color: white;
+        border: none;
+        height: 50px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        width: 100%;
+        margin: 15px 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        line-height: 50px;
+    }
+
+    .choice-btn:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+    }
+
+    @media (max-width: 576px) {
+        .choice-container {
+            padding: 15px;
+        }
+
+        .choice-card {
+            padding: 20px;
+        }
+
+        .choice-header h2 {
+            font-size: 20px;
+        }
+
+        .choice-btn {
+            font-size: 15px;
+            height: 45px;
+            line-height: 45px;
+        }
+    }
+</style>
+
+<div class="choice-container">
+    <div class="choice-card">
+        <div class="choice-header">
+            <h2>Who Are You?</h2>
+        </div>
+        <a href="{% url 'login_jobseeker' %}" class="choice-btn">Job Seeker</a>
+        <a href="{% url 'login_provider' %}" class="choice-btn">Job Provider</a>
+    </div>
+</div>
+{% endblock %}

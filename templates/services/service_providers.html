@@ -1,0 +1,172 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<style>
+    /* Reset any conflicting styles */
+    body {
+        background: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Ensure header stays on top */
+    header {
+        position: relative;
+        z-index: 1000;
+    }
+
+    .service-wrapper {
+        width: 100%;
+        background-color: #1a1a1a;
+        padding: 20px;
+        margin: 0;
+        min-height: 100vh;
+        position: relative;
+        z-index: 1;
+    }
+
+    .page-title {
+        color: white;
+        text-align: center;
+        font-size: 28px;
+        margin-bottom: 30px;
+        padding-top: 20px;
+    }
+
+    .providers-grid {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        padding-bottom: 40px; /* Add some padding at the bottom */
+    }
+
+    .provider-card {
+        background-color: #000000;
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .provider-image {
+        width: 120px;
+        height: 120px;
+        border-radius: 60px;
+        margin: 0 auto 15px;
+        object-fit: cover;
+        border: 3px solid #512da8;
+    }
+
+    .provider-name {
+        color: white;
+        font-size: 20px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .provider-details {
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 5px;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    .schedule-btn {
+        background: linear-gradient(to right, #512da8, #5c6bc0);
+        color: white;
+        border: none;
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        margin-top: 15px;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .schedule-btn:hover {
+        opacity: 0.9;
+    }
+
+    .default-icon {
+        font-size: 40px;
+        color: #512da8;
+        margin-bottom: 15px;
+    }
+
+    @media (max-width: 768px) {
+        .providers-grid {
+            padding: 10px;
+            padding-bottom: 30px;
+        }
+
+        .provider-card {
+            padding: 20px;
+        }
+
+        /* Ensure hamburger menu is visible */
+        .hamburger {
+            display: block !important;
+            color: #fff !important;
+        }
+
+        /* Adjust service wrapper for mobile */
+        .service-wrapper {
+            padding-top: 60px; /* Make room for the hamburger menu */
+        }
+    }
+</style>
+
+<div class="service-wrapper">
+    <h2 class="page-title">Find Your {{ service_type }}</h2>
+    <div class="providers-grid">
+        {% if providers %}
+            {% for provider in providers %}
+                <div class="provider-card">
+                    {% if provider.profile %}
+                        <img src="{{ provider.profile.url }}" alt="{{ provider.user.first_name }}" class="provider-image">
+                    {% else %}
+                        <i class="fa-solid fa-bolt default-icon"></i>
+                    {% endif %}
+                    <div class="provider-name">{{ provider.user.first_name }}</div>
+                    <div class="provider-details">Contact: {{ provider.phone }}</div>
+                    <div class="provider-details">Area: {{ provider.area }}</div>
+                    <div class="provider-details">
+                        Availability: {{ provider.availability }}
+                    </div>
+                    <div class="provider-details">
+                        Start time: {{ provider.start_time|time:"h:i A" }}<br>
+                        End time: {{ provider.end_time|time:"h:i A" }}
+                    </div>
+                    <button class="schedule-btn" onclick="scheduleAppointment('{{ provider.user.first_name }}')">
+                        Schedule Appointment
+                    </button>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="provider-card">
+                <p style="color: rgba(255, 255, 255, 0.7);">No {{ service_type|lower }}s available at the moment.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    function scheduleAppointment(providerName) {
+        alert('Scheduling an appointment with ' + providerName);
+    }
+
+    // Ensure menu toggle works
+    document.addEventListener('DOMContentLoaded', function() {
+        const hamburger = document.querySelector('.hamburger');
+        if (hamburger) {
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleMenu();
+            });
+        }
+    });
+</script>
+{% endblock %} 

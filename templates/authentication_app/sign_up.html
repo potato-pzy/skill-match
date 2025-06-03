@@ -1,0 +1,268 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #1a1a1a !important;
+        color: white !important;
+    }
+
+    .signup-container {
+        min-height: calc(100vh - 150px);
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        background-color: #1a1a1a;
+    }
+
+    .signup-card {
+        background-color: #000000;
+        border-radius: 15px;
+        overflow: hidden;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 30px;
+    }
+
+    .signup-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .signup-header h2 {
+        color: white;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        border: none !important;
+        color: white !important;
+        padding: 15px !important;
+        border-radius: 8px !important;
+        font-size: 16px;
+    }
+
+    .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .form-control:focus {
+        background-color: rgba(255, 255, 255, 0.15) !important;
+        box-shadow: none !important;
+    }
+
+    select.form-control {
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 8.825L1.175 4 2.238 2.938 6 6.7l3.763-3.762L10.825 4z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 15px center;
+        padding-right: 40px !important;
+    }
+
+    select.form-control option {
+        background-color: #1a1a1a;
+        color: white;
+    }
+
+    .signup-btn {
+        background: linear-gradient(to right, #512da8, #5c6bc0);
+        color: white;
+        border: none;
+        height: 50px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        width: 100%;
+        margin-top: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .signup-btn:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+    }
+
+    .login-link {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .login-link a {
+        color: #5c6bc0;
+        text-decoration: none;
+    }
+
+    .login-link p {
+        color: rgba(255, 255, 255, 0.7);
+        margin: 0;
+    }
+
+    .alert {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+
+    .role-selector {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .role-btn {
+        flex: 1;
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: 2px solid transparent;
+        padding: 12px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+    }
+
+    .role-btn.active {
+        border-color: #5c6bc0;
+        background-color: rgba(92, 107, 192, 0.2);
+    }
+
+    @media (max-width: 576px) {
+        .signup-container {
+            padding: 15px;
+        }
+
+        .signup-card {
+            padding: 20px;
+        }
+
+        .signup-header h2 {
+            font-size: 20px;
+        }
+
+        .form-control {
+            font-size: 15px;
+        }
+
+        .role-selector {
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .role-btn {
+            padding: 10px;
+        }
+    }
+</style>
+
+<div class="signup-container">
+    <div class="signup-card">
+        <div class="signup-header">
+            <h2>Create Your Account</h2>
+        </div>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="role-selector">
+            <button class="role-btn active" onclick="selectRole('jobseeker')">Job Seeker</button>
+            <button class="role-btn" onclick="selectRole('provider')">Job Provider</button>
+        </div>
+        
+        <form method="POST" id="signupForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+            </div>
+
+            <div id="jobseekerFields" class="role-fields">
+                <div class="form-group">
+                    <select class="form-control" id="job_role" name="job_role" required>
+                        <option value="" disabled selected>Select your job role</option>
+                        <option value="Electrician">Electrician</option>
+                        <option value="Plumber">Plumber</option>
+                        <option value="AC service">AC Service</option>
+                        <option value="Home deep cleaning">Home Deep Cleaning</option>
+                        <option value="Dogwalker">Dog Walker</option>
+                        <option value="Driver">Driver</option>
+                        <option value="Beautician">Beautician</option>
+                        <option value="Lumberjack">Lumberjack</option>
+                        <option value="Lawncare">Lawn Care</option>
+                        <option value="Welldigger">Well Digger</option>
+                        <option value="Plantkeeper">Plant Keeper</option>
+                        <option value="Welder">Welder</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="providerFields" class="role-fields" style="display: none;">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Company Name">
+                </div>
+                <div class="form-group">
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Contact Number">
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Business Address">
+                </div>
+            </div>
+            
+            <button type="submit" class="signup-btn">Create Account</button>
+        </form>
+
+        <div class="login-link">
+            <p>Already have an account? <a href="{% url 'login' %}">Sign in</a></p>
+        </div>
+    </div>
+</div>
+
+<script>
+function selectRole(role) {
+    const jobseekerFields = document.getElementById('jobseekerFields');
+    const providerFields = document.getElementById('providerFields');
+    const roleButtons = document.querySelectorAll('.role-btn');
+    const form = document.getElementById('signupForm');
+
+    roleButtons.forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+
+    if (role === 'jobseeker') {
+        jobseekerFields.style.display = 'block';
+        providerFields.style.display = 'none';
+        form.action = "{% url 'register_jobseeker' %}";
+    } else {
+        jobseekerFields.style.display = 'none';
+        providerFields.style.display = 'block';
+        form.action = "{% url 'register_provider' %}";
+    }
+}
+
+// Initialize with jobseeker selected
+document.addEventListener('DOMContentLoaded', function() {
+    selectRole('jobseeker');
+});
+</script>
+{% endblock %}

@@ -1,0 +1,148 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #1a1a1a !important;
+        color: white !important;
+    }
+
+    .login-container {
+        min-height: calc(100vh - 150px);
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        background-color: #1a1a1a;
+    }
+
+    .login-card {
+        background-color: #000000;
+        border-radius: 15px;
+        overflow: hidden;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 30px;
+    }
+
+    .login-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .login-header h3 {
+        color: white;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        border: none !important;
+        color: white !important;
+        padding: 15px !important;
+        border-radius: 8px !important;
+        font-size: 16px;
+    }
+
+    .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .form-control:focus {
+        background-color: rgba(255, 255, 255, 0.15) !important;
+        box-shadow: none !important;
+    }
+
+    .login-btn {
+        background: linear-gradient(to right, #512da8, #5c6bc0);
+        color: white;
+        border: none;
+        height: 50px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        width: 100%;
+        margin-top: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .login-btn:hover {
+        opacity: 0.9;
+    }
+
+    .register-link {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .register-link a {
+        color: #5c6bc0;
+        text-decoration: none;
+    }
+
+    .register-link p {
+        color: rgba(255, 255, 255, 0.7);
+        margin: 0;
+    }
+
+    .alert {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+
+    @media (max-width: 576px) {
+        .login-container {
+            padding: 15px;
+        }
+
+        .login-card {
+            padding: 20px;
+        }
+
+        .form-control {
+            font-size: 15px;
+        }
+    }
+</style>
+
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <h3>Business Sign In</h3>
+        </div>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username or Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+            </div>
+            
+            <button type="submit" class="login-btn">Sign In</button>
+        </form>
+
+        <div class="register-link">
+            <p>Don't have a business account? <a href="{% url 'register_provider' %}">Sign-up</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %} 

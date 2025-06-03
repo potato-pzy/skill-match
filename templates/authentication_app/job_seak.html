@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Skill Match</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+       @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+/* Base styles for all screen sizes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    padding-top: 0; /* Adjust padding for header */
+    padding-bottom: 0; /* Adjust padding for footer */
+}
+
+header {
+    background: linear-gradient(to right, #512da8, #5c6bc0);
+    color: white;
+    padding: 15px 20px; /* Add horizontal padding */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow for mobile */
+    position: sticky; /* Keep header at the top */
+    top: 0;
+    z-index: 10; /* Ensure it stays above other content */
+}
+
+.logo {
+    font-size: 1.5rem; /* Slightly smaller logo text */
+}
+
+.container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px; /* Slightly less rounded */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Reduced shadow */
+    width: 90%; /* Take up more width on smaller screens */
+    max-width: 400px; /* Still maintain a maximum width */
+    margin: 20px auto; /* Center the container with auto margins */
+}
+
+h2 {
+    font-size: 1.4rem; /* Slightly smaller heading */
+    margin-bottom: 15px;
+    text-align: center;
+    color: #512da8;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="time"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 0.9rem; /* Slightly smaller font for input */
+}
+
+label {
+    display: block; /* Make labels take full width */
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+button {
+    background: linear-gradient(to right, #512da8, #5c6bc0);
+    color: #fff;
+    padding: 12px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    width: 100%;
+    margin: 10px 0; /* Slightly more margin top and bottom */
+    font-size: 1rem;
+}
+
+button:hover {
+    transform: translateY(-2px); /* Less pronounced hover effect */
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.15); /* Reduced shadow on hover */
+}
+
+footer {
+    background: linear-gradient(to right, #5c6bc0, #512da8);
+    color: white;
+    text-align: center;
+    padding: 10px 20px; /* Add horizontal padding */
+    border-radius: 5px;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1); /* Shadow on top */
+    width: 100%;
+    margin-top: 20px; /* Add margin at the top */
+    font-size: 0.8rem; /* Smaller footer text */
+}
+
+/* Styles for links in the footer */
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 8px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Alert message styling (if you have it in your base.html) */
+.alert {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Link container below the form */
+.link-container {
+    display: flex;
+    width: 90%;
+    max-width: 400px;
+    justify-content: space-evenly;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.link-container a {
+    text-decoration: none;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.link-container a:hover {
+    color: #512da8;
+    text-decoration: underline;
+}
+
+/* Media query for smaller screens (e.g., phones) */
+@media screen and (max-width: 600px) {
+    body {
+        padding-top: 0; /* Adjust if header is sticky */
+        padding-bottom: 0;
+    }
+
+    header {
+        padding: 10px 15px;
+        font-size: 1rem;
+    }
+
+    .logo {
+        font-size: 1.3rem;
+    }
+
+    .container {
+        padding: 15px;
+        width: 95%;
+        margin: 15px auto;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="time"],
+    select {
+        padding: 8px;
+        margin: 6px 0;
+        font-size: 0.85rem;
+    }
+
+    label {
+        margin-top: 8px;
+        margin-bottom: 3px;
+        font-size: 0.85rem;
+    }
+
+    button {
+        padding: 10px 0;
+        margin: 8px 0;
+        font-size: 0.9rem;
+    }
+
+    footer {
+        padding: 8px 15px;
+        font-size: 0.75rem;
+    }
+
+    .link-container {
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+
+    .link-container a {
+        font-size: 0.8rem;
+    }
+}
+
+/* Further adjustments for very small screens */
+@media screen and (max-width: 360px) {
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .link-container a {
+        font-size: 0.75rem;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="logo">Skill Match</div>
+    </header>
+
+    <!-- Sign Up Form -->
+    <div class="container">
+        <h2>Sign Up</h2>
+        <!-- alert box  -->
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{message.tags}}">
+            <strong>{{message}}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="first_name" placeholder="Your Full Name" value="{{first_name}}" required>
+            <input type="email" name="email" placeholder="Enter your email" value="{{email}}" required>
+            <select name="job_role">
+                <option value="Electrician">Electrician</option>
+                <option value="Plumber">Plumber</option>
+                <option value="AC service">AC service</option>
+                <option value="Home deep cleaning">Home deep cleaning</option>
+                <option value="Dog walker">Dog walker</option>
+                <option value="Driver">Driver</option ```html
+            </select>
+            <input type="text" name="phone" placeholder="Enter your phone number" value="{{phone}}" required>
+            
+            <!-- Start Time and End Time Inputs -->
+            <label for="start_time">Start Time:</label>
+            <input type="time" name="start_time" id="start_time" required>
+            
+            <label for="end_time">End Time:</label>
+            <input type="time" name="end_time" id="end_time" required>
+            
+            <input type="text" name="area" placeholder="Enter your area" value="{{area}}" required>
+            <input type="file" name="profile" required>
+            <input type="password" name="password" placeholder="Create a password" required>
+            <input type="password" name="confirm_password" placeholder="Confirm password" required>
+            <input type="hidden" name="is_job_seeker" value="True">
+            <button type="submit">Sign Up</button>
+        </form>
+        <div style="display: flex;width: 400px;justify-content: space-evenly;">
+            <a href="{% url 'login' %}" style="text-decoration: none;"><h6>Already have an account? Login</h6></a>
+            <a href="{% url 'home' %}" style="text-decoration: none;"><h6>Home</h6></a>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Skill Match. All rights reserved.</p>
+    </footer>
+    <script>
+        setTimeout(() => {
+            $(".alert").alert("close")
+        }, 3000)
+    </script>
+</body>
+
+</html>

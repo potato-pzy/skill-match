@@ -1,0 +1,163 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #1a1a1a !important;
+        color: white !important;
+    }
+
+    .register-container {
+        min-height: calc(100vh - 150px);
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        background-color: #1a1a1a;
+    }
+
+    .register-card {
+        background-color: #000000;
+        border-radius: 15px;
+        overflow: hidden;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 30px;
+    }
+
+    .register-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .register-header h3 {
+        color: white;
+        font-size: 24px;
+        font-weight: 600;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-control {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        border: none !important;
+        color: white !important;
+        padding: 15px !important;
+        border-radius: 8px !important;
+        font-size: 16px;
+    }
+
+    .form-control::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .form-control:focus {
+        background-color: rgba(255, 255, 255, 0.15) !important;
+        box-shadow: none !important;
+    }
+
+    .register-btn {
+        background: linear-gradient(to right, #512da8, #5c6bc0);
+        color: white;
+        border: none;
+        height: 50px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        width: 100%;
+        margin-top: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .register-btn:hover {
+        opacity: 0.9;
+    }
+
+    .login-link {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .login-link a {
+        color: #5c6bc0;
+        text-decoration: none;
+    }
+
+    .login-link p {
+        color: rgba(255, 255, 255, 0.7);
+        margin: 0;
+    }
+
+    .alert {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        padding: 15px;
+    }
+
+    @media (max-width: 576px) {
+        .register-container {
+            padding: 15px;
+        }
+
+        .register-card {
+            padding: 20px;
+        }
+
+        .form-control {
+            font-size: 15px;
+        }
+    }
+</style>
+
+<div class="register-container">
+    <div class="register-card">
+        <div class="register-header">
+            <h3>Create Business Account</h3>
+        </div>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Company Name" required>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Business Email" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Contact Number" required>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="address" name="address" placeholder="Business Address" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm Password" required>
+            </div>
+            
+            <button type="submit" class="register-btn">Create Business Account</button>
+        </form>
+
+        <div class="login-link">
+            <p>Already have an account? <a href="{% url 'login_provider' %}">Sign in</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %} 
