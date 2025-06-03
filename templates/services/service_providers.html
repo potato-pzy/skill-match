@@ -33,6 +33,13 @@
         padding-top: 20px;
     }
 
+    .page-subtitle {
+        color: rgba(255, 255, 255, 0.7);
+        text-align: center;
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
     .providers-grid {
         max-width: 600px;
         margin: 0 auto;
@@ -120,7 +127,8 @@
 </style>
 
 <div class="service-wrapper">
-    <h2 class="page-title">Find Your {{ service_type }}</h2>
+    <h2 class="page-title">{{ service_type }}s Near Your Location</h2>
+    <p class="page-subtitle">Find and book trusted {{ service_type|lower }}s in your area</p>
     <div class="providers-grid">
         {% if providers %}
             {% for provider in providers %}
