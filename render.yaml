@@ -11,9 +11,16 @@ services:
         generateValue: true
       - key: DJANGO_DEBUG
         value: false
+      - key: PYTHONPATH
+        value: .
     disk:
       name: sqlite-data
       mountPath: /data
       sizeGB: 1
     healthCheckPath: /
     autoDeploy: true
+
+  - type: postgresql
+    name: skillmatch_db
+    ipAllowList: []
+    plan: free 
