@@ -16,4 +16,5 @@ urlpatterns = [
     path('jobseeker/login/', login_jobseeker_view, name='login_jobseeker'),
     path('jobseeker/logout/', logout_jobseeker_view, name='logout_jobseeker'),
     path('jobseeker/register/', register_jobseeker_view, name='register_jobseeker'),
+    path('jobseeker/profile/', profile_view, name='profile'),
 ]

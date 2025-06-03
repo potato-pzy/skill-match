@@ -212,3 +212,24 @@ def register_jobseeker_view(request):
         return redirect('login_jobseeker')
         
     return render(request, 'authentication/register_jobseeker.html')
+
+def profile_view(request):
+    """Display job seeker profile information"""
+    if not request.user.is_authenticated:
+        messages.error(request, 'Please login to view your profile.')
+        return redirect('login_jobseeker')
+    
+    if not request.user.is_job_seeker:
+        messages.error(request, 'Access denied. Job seeker profile only.')
+        return redirect('home')
+    
+    try:
+        jobseeker = JobSeeker.objects.get(user=request.user)
+        context = {
+            'jobseeker': jobseeker,
+            'user': request.user,
+        }
+        return render(request, 'job_app/profile.html', context)
+    except JobSeeker.DoesNotExist:
+        messages.error(request, 'Profile not found.')
+        return redirect('home')
