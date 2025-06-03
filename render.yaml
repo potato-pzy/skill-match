@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: skillmatch
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn skillMatch_project.wsgi:application
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.9.0
+      - key: DJANGO_SECRET_KEY
+        generateValue: true
+      - key: DJANGO_DEBUG
+        value: false
+    disk:
+      name: sqlite-data
+      mountPath: /data
+      sizeGB: 1
+    healthCheckPath: /
+    autoDeploy: true
+
+  - type: postgresql
+    name: skillmatch_db
+    ipAllowList: []
+    plan: free 
