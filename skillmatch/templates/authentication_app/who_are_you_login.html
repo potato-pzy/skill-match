@@ -96,15 +96,15 @@
 <div class="choice-container">
     <div class="choice-card">
         <div class="choice-header">
-            <h2>Choose Your Role</h2>
-            <p style="color: rgba(255, 255, 255, 0.7);">Select how you want to join SkillMatch</p>
+            <h2>Login to Your Account</h2>
+            <p style="color: rgba(255, 255, 255, 0.7);">Select your account type to login</p>
         </div>
         
         <a href="{% url 'login_jobseaker' %}" class="choice-btn">
             <i class="fas fa-user-tie"></i> Login as Job Seeker
         </a>
         <div class="choice-text">
-            Don't have a job seeker account? <a href="{% url 'sign_up_job_seeker' %}">Sign up</a>
+            Don't have a job seeker account? <a href="{% url 'register_jobseeker' %}">Sign up</a>
         </div>
         
         <a href="{% url 'login_provider' %}" class="choice-btn" style="margin-top: 30px;">
@@ -115,4 +115,4 @@
         </div>
     </div>
 </div>
-{% endblock %}
+{% endblock %} 

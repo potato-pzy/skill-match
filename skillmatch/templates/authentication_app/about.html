@@ -6,305 +6,285 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
 
-body {
-    background-color: #f9f9f9;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    min-height: 100vh;
-    width: 100%;
-    overflow-x: hidden;
-}
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            min-height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+        }
 
-/* Header Section */
-header {
-    background: linear-gradient(to right, #512da8, #5c6bc0);
-    color: #fff;
-    width: 100%;
-    padding: 15px 5%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    flex-wrap: wrap;
-}
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+            width: 100%;
+            text-align: center;
+            padding: 40px 20px;
+        }
 
-header .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
 
-header nav ul {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    padding: 10px 0;
-}
+        .hero p {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
 
-header nav ul li a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: 500;
-    font-size: 0.95rem;
-    transition: color 0.3s;
-}
+        /* About Us Content Section */
+        .about-container {
+            padding: 30px 5%;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+            width: 100%;
+            margin: 0 auto;
+        }
 
-header nav ul li a:hover {
-    color: #f9f9f9;
-}
+        .about-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
 
-/* Hero Section */
-.hero {
-    background: linear-gradient(to right, #c9d6ff, #e2e2e2);
-    width: 100%;
-    text-align: center;
-    padding: 40px 20px;
-}
+        .about-text h2 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #512da8;
+        }
 
-.hero h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    margin-bottom: 10px;
-}
+        .about-text ul {
+            margin-left: 20px;
+            list-style-type: disc;
+        }
 
-.hero p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    padding: 0 10px;
-}
+        .about-text ul li {
+            margin-bottom: 5px;
+        }
 
-/* About Us Content Section */
-.about-container {
-    padding: 30px 5%;
-    max-width: 1200px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
-    width: 100%;
-}
+        /* Developer Info Section */
+        .developer-card-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            text-align: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px 5%;
+            max-width: 1200px;
+            margin: auto;
+        }
 
-.about-text {
-    font-size: 0.95rem;
-    line-height: 1.7;
-}
+        .developer-card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 90%;
+            max-width: 300px;
+            animation: fadeIn 0.8s ease-out;
+        }
 
-.about-text h2 {
-    font-size: 1.4rem;
-    margin-bottom: 10px;
-    color: #512da8;
-}
+        .developer-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
 
-.about-text ul {
-    margin-left: 20px;
-    list-style-type: disc;
-}
+        .developer-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
 
-.about-text ul li {
-    margin-bottom: 5px;
-}
+        .developer-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: #512da8;
+        }
 
-/* Developer Info Section */
-.developer-card-container {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    text-align: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    padding: 20px 5%;
-    max-width: 1200px;
-    margin: auto;
-}
+        .developer-card p {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 5px;
+        }
 
-.developer-card {
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 90%;
-    max-width: 300px;
-    animation: fadeIn 0.8s ease-out;
-}
+        .developer-card a {
+            color: #555;
+            font-size: 0.9rem;
+            text-decoration: none;
+            word-break: break-all;
+        }
 
-.developer-card:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
+        /* Footer Section */
+        footer.footer-badge {
+            background: linear-gradient(to right, #5c6bc0, #512da8);
+            color: #fff;
+            text-align: center;
+            padding: 12px 20px;
+            margin: 30px auto;
+            border-radius: 25px;
+            display: inline-block;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 0.85rem;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
 
-.developer-card img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 10px;
-}
+        footer.footer-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
 
-.developer-card h3 {
-    font-size: 1.2rem;
-    margin-bottom: 5px;
-    color: #512da8;
-}
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-.developer-card p {
-    font-size: 0.9rem;
-    color: #555;
-    margin-bottom: 5px;
-}
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
 
-.developer-card a {
-    color: #555;
-    font-size: 0.9rem;
-    text-decoration: none;
-    word-break: break-all;
-}
+            .hero p {
+                font-size: 0.9rem;
+                padding: 0 15px;
+            }
 
-/* Footer Section */
-footer.footer-badge {
-    background: linear-gradient(to right, #5c6bc0, #512da8);
-    color: #fff;
-    text-align: center;
-    padding: 12px 20px;
-    margin: 30px auto;
-    border-radius: 25px;
-    display: inline-block;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
+            .about-container {
+                padding: 20px 3%;
+            }
 
-footer.footer-badge:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-}
+            .about-text {
+                font-size: 0.9rem;
+            }
 
-/* Fade-in animation */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+            .about-text h2 {
+                font-size: 1.2rem;
+            }
 
-/* --- Responsive Design --- */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+            .developer-card-container {
+                padding: 15px 3%;
+                gap: 15px;
+            }
 
-    header nav ul {
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-        padding: 10px 0;
-    }
+            .developer-card {
+                padding: 15px;
+                width: 95%;
+                max-width: 280px;
+            }
 
-    .hero h1 {
-        font-size: 1.8rem;
-    }
+            .developer-card img {
+                width: 80px;
+                height: 80px;
+            }
 
-    .hero p {
-        font-size: 1rem;
-    }
+            .developer-card h3 {
+                font-size: 1.1rem;
+            }
 
-    .about-text h2 {
-        font-size: 1.2rem;
-    }
+            .developer-card p {
+                font-size: 0.85rem;
+            }
+        }
 
-    .about-text p, .about-text ul li {
-        font-size: 0.95rem;
-    }
+        @media (max-width: 480px) {
+            .hero {
+                padding: 30px 15px;
+            }
 
-    .developer-card {
-        width: 100%;
-    }
+            .hero h1 {
+                font-size: 1.4rem;
+            }
 
-    footer.footer-badge {
-        font-size: 0.8rem;
-        padding: 10px 15px;
-    }
-}
+            .about-container {
+                padding: 15px 2%;
+            }
 
-@media (max-width: 480px) {
-    .hero h1 {
-        font-size: 1.6rem;
-    }
+            .developer-card-container {
+                padding: 10px 2%;
+            }
 
-    .hero p {
-        font-size: 0.95rem;
-    }
-
-    .about-text {
-        font-size: 0.9rem;
-    }
-
-    .developer-card img {
-        width: 80px;
-        height: 80px;
-    }
-
-    header .logo {
-        font-size: 1.3rem;
-    }
-
-    .developer-card h3 {
-        font-size: 1.1rem;
-    }
-}
-
+            .developer-card {
+                width: 100%;
+                max-width: 250px;
+            }
+        }
     </style>
-
 
     <!-- Hero Section -->
     <section class="hero">
         <h1>About Skill Match</h1>
-        <p>Skill Match connects users with trusted service providers seamlessly. We aim to make finding skilled help easy and stress-free.</p>
+        <p>Connecting skills to opportunities, one match at a time.</p>
     </section>
 
-    <!-- About Text Section -->
+    <!-- About Us Content -->
     <div class="about-container">
         <div class="about-text">
             <h2>Our Mission</h2>
-            <p>
-                Skill Match's mission is to connect individuals with trusted professionals for any type of service—repair, legal, technical, beauty, or personal care. Our goal is simplicity, speed, and reliability in every connection.
-            </p>
-            <h2>Why Skill Match?</h2>
+            <p>Skill Match is a comprehensive platform designed to bridge the gap between skilled professionals and those seeking their services. We believe in creating meaningful connections that benefit both service providers and customers.</p>
+
+            <h2>What We Offer</h2>
             <ul>
-                <li>Verified professionals for peace of mind.</li>
-                <li>Fast, secure, and efficient booking services.</li>
-                <li>All industries, all services, all needs, under one platform.</li>
+                <li><strong>For Service Seekers:</strong> Easy access to verified professionals in your area</li>
+                <li><strong>For Service Providers:</strong> A platform to showcase your skills and grow your business</li>
+                <li><strong>Quality Assurance:</strong> All professionals are verified and rated by the community</li>
+                <li><strong>Convenience:</strong> Book services instantly through our user-friendly interface</li>
+                <li><strong>Trust & Safety:</strong> Secure payment processing and dispute resolution</li>
+            </ul>
+
+            <h2>Our Values</h2>
+            <p>We are committed to transparency, reliability, and excellence in service delivery. Our platform ensures that every interaction is safe, professional, and mutually beneficial.</p>
+
+            <h2>How It Works</h2>
+            <ul>
+                <li>Browse services or search for specific skills you need</li>
+                <li>View profiles, ratings, and reviews of service providers</li>
+                <li>Contact professionals directly or book services online</li>
+                <li>Complete your project and leave feedback for others</li>
             </ul>
         </div>
     </div>
-    <!-- Developer Info Section -->
+
+    <!-- Developer Information -->
     <div class="developer-card-container">
-        <!-- Developer 1 -->
         <div class="developer-card">
-            <img src="{% static 'img/dev.jpeg' %}" alt="Varun Raj">
-            <h3>Varunraj</h3>
-            <p>Full stack developer</p>
-            <a href="varunrajtnr007@gmail.com">varunrajtnr007@gmail.com</a>
+            <img src="{% static 'images/developer-placeholder.jpg' %}" alt="Developer" onerror="this.style.display='none'">
+            <h3>Development Team</h3>
+            <p><strong>Role:</strong> Full Stack Developer</p>
+            <p><strong>Skills:</strong> Django, Python, JavaScript, HTML/CSS</p>
+            <p><strong>Contact:</strong> <a href="mailto:contact@skillmatch.com">contact@skillmatch.com</a></p>
+            <p>Passionate about creating solutions that connect people and make services more accessible.</p>
         </div>
     </div>
 
-{% endblock content %}
+    <!-- Footer -->
+    <div style="text-align: center; width: 100%; margin-top: 40px;">
+        <footer class="footer-badge">
+            © 2024 Skill Match - Connecting Skills to Needs
+        </footer>
+    </div>
+{% endblock %}
