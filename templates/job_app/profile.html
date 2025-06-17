@@ -143,11 +143,7 @@
         {% endif %}
         
         <h1 class="profile-name">
-            {% if jobseeker.first_name %}
-                {{ jobseeker.first_name }}
-            {% else %}
-                {{ user.first_name|default:user.username }}
-            {% endif %}
+            {{ jobseeker.first_name|default:user.first_name|default:user.username }}
         </h1>
         
         <div class="profile-role">
@@ -223,7 +219,7 @@
     </div>
 
     <div style="text-align: center;">
-        <a href="#" class="edit-profile-btn">
+        <a href="{% url 'edit_profile' %}" class="edit-profile-btn">
             <i class="fas fa-edit"></i> Edit Profile
         </a>
         <a href="{% url 'home' %}" class="edit-profile-btn" style="background: #6c757d;">

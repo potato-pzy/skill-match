@@ -20,7 +20,7 @@
         border-radius: 15px;
         overflow: hidden;
         width: 100%;
-        max-width: 400px;
+        max-width: 600px;
         margin: 0 auto;
         padding: 30px;
     }
@@ -120,6 +120,28 @@
         font-size: 14px;
     }
 
+    .checkbox-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .checkbox-item {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .checkbox-item input[type="checkbox"] {
+        accent-color: #5c6bc0;
+    }
+
+    .checkbox-item label {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 14px;
+    }
+
     @media (max-width: 576px) {
         .signup-container {
             padding: 15px;
@@ -152,41 +174,106 @@
             {% endfor %}
         {% endif %}
         
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
+            <input type="hidden" name="is_job_seeker" value="true">
+            
             <div class="form-group">
-                <label class="form-label" for="username">Username</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+                <label class="form-label" for="first_name">First Name</label>
+                <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Enter your first name" required>
             </div>
+
             <div class="form-group">
                 <label class="form-label" for="email">Email Address</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
             </div>
+
             <div class="form-group">
-                <label class="form-label" for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Create a password" required>
+                <label class="form-label" for="phone">Phone Number</label>
+                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" required>
             </div>
-            <div class="form-group">
-                <label class="form-label" for="confirm_password">Confirm Password</label>
-                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
-            </div>
+
             <div class="form-group">
                 <label class="form-label" for="job_role">Job Role</label>
                 <select class="form-control" id="job_role" name="job_role" required>
                     <option value="" disabled selected>Select your job role</option>
-                    <option value="Electrician">Electrician</option>
-                    <option value="Plumber">Plumber</option>
-                    <option value="AC service">AC Service</option>
-                    <option value="Home deep cleaning">Home Deep Cleaning</option>
-                    <option value="Dogwalker">Dog Walker</option>
-                    <option value="Driver">Driver</option>
-                    <option value="Beautician">Beautician</option>
-                    <option value="Lumberjack">Lumberjack</option>
-                    <option value="Lawncare">Lawn Care</option>
-                    <option value="Welldigger">Well Digger</option>
-                    <option value="Plantkeeper">Plant Keeper</option>
-                    <option value="Welder">Welder</option>
+                    <option value="electrician">Electrician</option>
+                    <option value="acservice">AC Service</option>
+                    <option value="plumber">Plumber</option>
+                    <option value="beautician">Beautician</option>
+                    <option value="dogwalker">Dog Walker</option>
+                    <option value="driver">Driver</option>
+                    <option value="homedeepcleaning">Home Deep Cleaning</option>
+                    <option value="lawncare">Lawn Care</option>
+                    <option value="lumberjack">Lumberjack</option>
+                    <option value="plantkeeper">Plant Keeper</option>
+                    <option value="welder">Welder</option>
+                    <option value="welldigger">Well Digger</option>
                 </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Availability (Days)</label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="monday" name="available_days" value="Monday">
+                        <label for="monday">Monday</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="tuesday" name="available_days" value="Tuesday">
+                        <label for="tuesday">Tuesday</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="wednesday" name="available_days" value="Wednesday">
+                        <label for="wednesday">Wednesday</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="thursday" name="available_days" value="Thursday">
+                        <label for="thursday">Thursday</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="friday" name="available_days" value="Friday">
+                        <label for="friday">Friday</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="saturday" name="available_days" value="Saturday">
+                        <label for="saturday">Saturday</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="sunday" name="available_days" value="Sunday">
+                        <label for="sunday">Sunday</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="start_time">Start Time</label>
+                <input type="time" class="form-control" id="start_time" name="start_time" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="end_time">End Time</label>
+                <input type="time" class="form-control" id="end_time" name="end_time" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="area">Area/Location</label>
+                <input type="text" class="form-control" id="area" name="area" placeholder="Enter your service area" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="profile">Profile Picture</label>
+                <input type="file" class="form-control" id="profile" name="profile" accept="image/*" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Create a password" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="confirm_password">Confirm Password</label>
+                <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
             </div>
             
             <button type="submit" class="signup-btn">Create Account</button>

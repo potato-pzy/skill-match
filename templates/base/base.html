@@ -242,6 +242,14 @@
                         <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                     </li>
                     {% if request.user.is_authenticated %}
+                        {% if request.user.is_job_seeker %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'profile' %}">My Profile</a>
+                            </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'view_appointments' %}">My Appointments</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                         </li>

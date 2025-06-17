@@ -22,7 +22,7 @@ def signUp(request):
             return render(request,'authentication_app/sign_up.html',context)
         else:
             CustomUser.objects.create_user(first_name=firstName,email=email,password=password,username=email)
-            return redirect(signIn)
+            return redirect('login')
     return render(request,'authentication_app/sign_up.html')
 
 def signUpJobSeeker(request):
@@ -75,6 +75,7 @@ def signUpJobSeeker(request):
                 profile = request.FILES.get('profile')
                 JobSeeker.objects.create(
                     user=user,
+                    first_name=firstName,
                     phone=phone,
                     availability=availability,
                     area=area,
@@ -85,7 +86,7 @@ def signUpJobSeeker(request):
                 )
 
             
-            return redirect(signIn)
+            return redirect('login')
         except Exception as e:
             messages.error(request, f"An error occurred: {str(e)}")
             return render(request, 'authentication_app/sign_up_job_seeker.html', context)
@@ -111,7 +112,7 @@ def signIn(request):
         if user is not None:
             # Log in the user
             login(request, user)
-            return redirect(home)
+            return redirect('home')
             # Redirect based on user role
         else:
             # If authentication fails
@@ -139,7 +140,7 @@ def signIn2(request):
         if user is not None:
             # Log in the user
             login(request, user)
-            return redirect(home)
+            return redirect('home')
             # Redirect based on user role
         else:
             # If authentication fails
@@ -147,13 +148,13 @@ def signIn2(request):
             return render(request, 'authentication_app/login_jobseaker.html', {'email': email})
     else:
         return render(request, 'authentication_app/login_jobseaker.html')
+
 def home(request):
-    
     return render(request,'authentication_app/index.html')
 
 def logout_view(request):
     logout(request)
-    return redirect(home)
+    return redirect('home')
 
 def who_are_you(request):
     return render(request,'authentication_app/who_are_you.html')
@@ -166,7 +167,6 @@ def about(request):
 
 def signUpProvider(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
         email = request.POST.get('email')
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
@@ -175,7 +175,6 @@ def signUpProvider(request):
         address = request.POST.get('address')
         
         context = {
-            'username': username,
             'email': email,
             'company_name': company_name,
             'phone': phone,
@@ -185,22 +184,23 @@ def signUpProvider(request):
         # Check if passwords match
         if password != confirm_password:
             messages.error(request, "Passwords do not match")
-            return render(request, 'authentication_app/sign_up.html', context)
+            return render(request, 'authentication/register_provider.html', context)
         
         # Check if email already exists
         if CustomUser.objects.filter(email=email).exists():
             messages.error(request, "Email already exists")
-            return render(request, 'authentication_app/sign_up.html', context)
+            return render(request, 'authentication/register_provider.html', context)
         
         # Create the user and job provider
         try:
             user = CustomUser.objects.create_user(
-                username=username,
+                username=email,  # Use email as username
                 email=email,
                 password=password,
                 is_job_provider=True
             )
             
+            # Create the JobProvider profile
             JobProvider.objects.create(
                 user=user,
                 company_name=company_name,
@@ -208,12 +208,13 @@ def signUpProvider(request):
                 address=address
             )
             
+            messages.success(request, "Registration successful! Please login.")
             return redirect('login_provider')
         except Exception as e:
-            messages.error(request, f"An error occurred: {str(e)}")
-            return render(request, 'authentication_app/sign_up.html', context)
-
-    return render(request, 'authentication_app/sign_up.html')
+            messages.error(request, f"Registration failed: {str(e)}")
+            return render(request, 'authentication/register_provider.html', context)
+    
+    return render(request, 'authentication/register_provider.html')
 
 def signInProvider(request):
     if request.method == 'POST':
@@ -232,7 +233,7 @@ def signInProvider(request):
 
         if user is not None and user.is_job_provider:
             login(request, user)
-            return redirect(home)
+            return redirect('home')
         else:
             messages.error(request, "Email or Password is incorrect!")
             return render(request, 'authentication_app/login.html', {'email': email})
@@ -249,3 +250,7 @@ def service_providers(request, service_type):
     }
     
     return render(request, 'services/service_providers.html', context)
+
+def login_choice(request):
+    """Display the login choice page"""
+    return render(request, 'authentication_app/who_are_you_login.html')
